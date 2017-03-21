@@ -99,6 +99,11 @@ namespace MyCartographyObjects
             Console.ReadKey();
             return;
         }
+        public void Draw(Graphics g)
+        {
+            Pen pen = new Pen(Colour);
+            
+        }
         #endregion
     }
 }

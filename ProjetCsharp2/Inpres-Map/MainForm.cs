@@ -136,17 +136,22 @@ namespace Inpres_Map
             }
             else if(CreateMI.Checked == true && PolylineTB.Checked == true)
             {
-                POI polyPOI = new POI(e.Y, e.X, "POI " + DescriptionTB.Text, ColorButton.BackColor);
+                POI polyPOI = new POI(e.Y, e.X,DescriptionTB.Text, ColorButton.BackColor);
+                currentPolyline.Colour = ColorButton.BackColor;
                 currentPolyline.AddPOI(polyPOI);
                 BLPOI.Add(polyPOI);
                 if (e.Button == MouseButtons.Right)
+                {
                     BLPLINE.Add(currentPolyline);
+                    currentPolyline = new Polyline();
+                }
                 InpresMapPB.Invalidate();
 
             }
             else if(CreateMI.Checked == true && PolygonTB.Checked == true)
             {
                 POI gonPOI = new POI(e.X, e.Y, "POI " + DescriptionTB.Text, ColorButton.BackColor);
+                currentPolygon.Colour = ColorButton.BackColor;
                 currentPolyline.AddPOI(gonPOI);
                 currentPolygon.AddPolyline(currentPolyline);
                 BLPOI.Add(gonPOI);
@@ -154,6 +159,8 @@ namespace Inpres_Map
                 {
                     BLPLINE.Add(currentPolyline);
                     BLPGON.Add(currentPolygon);
+                    currentPolyline = new Polyline();
+                    currentPolygon = new Polygon();
                 }
                 InpresMapPB.Invalidate();
 
