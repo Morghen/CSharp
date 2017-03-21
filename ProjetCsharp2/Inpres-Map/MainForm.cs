@@ -112,17 +112,17 @@ namespace Inpres_Map
 
         private void Draw(Graphics g)
         {
-            foreach(POI unPOI in BLPOI)
+            foreach(Polygon unPolygon in BLPGON)
             {
-                unPOI.Draw(g);
+                unPolygon.Draw(g);
             }
-            foreach(Polyline unePolyline in BLPLINE)
+            foreach (Polyline unePolyline in BLPLINE)
             {
                 unePolyline.Draw(g);
             }
-            foreach(Polygon unPolygon in BLPGON)
+            foreach (POI unPOI in BLPOI)
             {
-               // unPolygon.Draw(g);
+                unPOI.Draw(g);
             }
         }
 
@@ -150,22 +150,19 @@ namespace Inpres_Map
             }
             else if(CreateMI.Checked == true && PolygonTB.Checked == true)
             {
-                POI gonPOI = new POI(e.X, e.Y, "POI " + DescriptionTB.Text, ColorButton.BackColor);
+                ButtonValidate.Visible = true;
+                POI gonPOI = new POI(e.Y, e.X, DescriptionTB.Text, ColorButton.BackColor);
                 currentPolygon.Colour = ColorButton.BackColor;
+                currentPolyline.Colour = ColorButton.BackColor;
                 currentPolyline.AddPOI(gonPOI);
-                currentPolygon.AddPolyline(currentPolyline);
                 BLPOI.Add(gonPOI);
                 if (e.Button == MouseButtons.Right)
                 {
+                    currentPolygon.AddPolyline(currentPolyline);
                     BLPLINE.Add(currentPolyline);
-                    BLPGON.Add(currentPolygon);
                     currentPolyline = new Polyline();
-                    currentPolygon = new Polygon();
                 }
                 InpresMapPB.Invalidate();
-
-
-
             }
         }
 
@@ -208,6 +205,15 @@ namespace Inpres_Map
                     MessageBox.Show("Erreur : impossible de lire le fichier. " + ex.Message);
                 }
             }
+        }
+
+        private void ButtonValidate_Click(object sender, EventArgs e)
+        {
+            BLPGON.Add(currentPolygon);
+            currentPolyline = new Polyline();
+            currentPolygon = new Polygon();
+            ButtonValidate.Visible = false;
+            InpresMapPB.Invalidate();
         }
     }
 }

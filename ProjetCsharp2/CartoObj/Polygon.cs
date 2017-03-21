@@ -101,8 +101,17 @@ namespace MyCartographyObjects
         }
         public void Draw(Graphics g)
         {
-            Pen pen = new Pen(Colour);
-            
+            PointF[] tabPoints = new PointF[NbPoints];
+            int i = 0;
+            foreach (Polyline unePolyline in ListPolyline)
+            {
+                foreach (POI unPOI in unePolyline.ListPOI)
+                {
+                    tabPoints[i] = new PointF((float)unPOI.Long, (float)unPOI.Lat);
+                    i++;
+                }
+            }
+            g.FillPolygon(Brushes.DarkOrange, tabPoints, System.Drawing.Drawing2D.FillMode.Alternate);
         }
         #endregion
     }
