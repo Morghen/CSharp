@@ -193,7 +193,7 @@ namespace Inpres_Map
         private void OpenTS_Click(object sender, EventArgs e)
         {
             OpenFileDialog fd = new OpenFileDialog();
-            fd.Filter = "Fichiers BMP (*.bmp)|*.bmp|Fichiers JPEG (*.jpg)|*.jpg|Fichiers PNG (*.png)|*.png";
+            fd.Filter = "Fichiers BMP (*.bmp)|*.bmp|Fichiers JPEG (*.jpg)|*.jpg|Fichiers PNG (*.png)|*.png|Tous les fichiers (*.*)|*.*";
             if (fd.ShowDialog() == DialogResult.OK)
             {
                 try
