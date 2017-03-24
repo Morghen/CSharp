@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,6 @@ namespace MyCartographyObjects
         #region VARIABLES MEMBRES
         private static int _compteur = 0;
         private List<Polyline> _listPolyline;
-        private string _description;
         #endregion
         #region CONSTRUCTEURS
         public Polygon()
@@ -37,11 +37,13 @@ namespace MyCartographyObjects
         }
         #endregion
         #region PROPRIETES
+        [BrowsableAttribute(false)]
         public int Compteur
         {
             get { return _compteur; }
             set { _compteur = value; }
         }
+        [ReadOnlyAttribute(true)]
         public int NbPoints
         {
             get
@@ -66,14 +68,10 @@ namespace MyCartographyObjects
                 return _count;
             } 
         }
+        [BrowsableAttribute(false)]
         public List<Polyline> ListPolyline
         {
             get { return _listPolyline; }
-        }
-        public string Description
-        {
-            get { return _description; }
-            set { _description = value; }
         }
         #endregion
         #region METHODES

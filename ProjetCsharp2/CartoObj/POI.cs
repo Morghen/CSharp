@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,6 @@ namespace MyCartographyObjects
         private static int _compteur = 0;
         private double _lat;
         private double _long;
-        private string _description;
         #endregion
         #region CONSTRUCTEURS
         public POI(double lat,double longi,string description,Color color)
@@ -48,25 +48,23 @@ namespace MyCartographyObjects
         }
         #endregion
         #region PROPRIETES
+        [CategoryAttribute("Coord"),ReadOnlyAttribute(true)]
         public double Lat
         {
             get { return _lat; }
             set { _lat = value; }
         }
+        [CategoryAttribute("Coord"),ReadOnlyAttribute(true)]
         public double Long
         {
             get { return _long; }
             set { _long = value; }
         }
+        [BrowsableAttribute(false)]
         public int Compteur
         {
             get { return _compteur; }
             set { _compteur = value; }
-        }
-        public string Description
-        {
-            get { return _description; }
-            set { _description = value; }
         }
         #endregion
         #region METHODES
@@ -87,10 +85,10 @@ namespace MyCartographyObjects
         }
         public bool IsPointClose(double longi,double lat, double precision) //Méthode dans une autre librairie de classe math
         {
-            bool checkOK;
+            bool checkOK = false;
             double X, Y;
-            X = Math.Abs(Lat - lat);
-            Y = Math.Abs(Long - longi);
+            X = Math.Abs(Long - longi);
+            Y = Math.Abs(Lat - lat);
             if ((Math.Sqrt((Math.Pow(X, 2) + (Math.Pow(Y, 2))))) <= precision)
                 checkOK = true;
             else

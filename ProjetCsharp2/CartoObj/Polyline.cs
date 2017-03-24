@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MyMathLib;
 using System.Drawing;
+using System.ComponentModel;
 
 namespace MyCartographyObjects
 {
@@ -13,7 +14,6 @@ namespace MyCartographyObjects
         #region VARIABLES MEMBRES
         private static int _compteur = 0;
         private List<POI> _listPOI;
-        private string _description;
         #endregion
         #region CONSTRUCTEURS
         public Polyline()
@@ -39,16 +39,18 @@ namespace MyCartographyObjects
         }
         #endregion
         #region PROPRIETES
+        [BrowsableAttribute(false)]
         public int Compteur
         {
             get { return _compteur; }
             set { _compteur = value; }
         }
+        [BrowsableAttribute(false)]
         public List<POI> ListPOI
         {
             get { return _listPOI; }
         }
- 
+        [ReadOnlyAttribute(true)]
         public int NbPoints
         {
             get
@@ -61,6 +63,7 @@ namespace MyCartographyObjects
                 return _count;
             }
         }
+        [BrowsableAttribute(false)]
         public int FirstIDPOI
         {
             get
@@ -68,17 +71,13 @@ namespace MyCartographyObjects
                 return ListPOI.First().Id;
             }
         }
+        [BrowsableAttribute(false)]
         public int LastIDPOI
         {
             get
             {
                 return ListPOI.Last().Id;
             }
-        }
-        public string Description
-        {
-            get { return _description; }
-            set { _description = value; }
         }
         #endregion
         #region METHODES

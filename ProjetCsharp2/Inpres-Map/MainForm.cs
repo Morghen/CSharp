@@ -19,6 +19,7 @@ namespace Inpres_Map
         BindingList<Polygon> BLPGON = new BindingList<Polygon>();
         Polyline currentPolyline = new Polyline();
         Polygon currentPolygon = new Polygon();
+        double precisionForm = 50;
         public InpresMapForm()
         {
             InitializeComponent();
@@ -164,11 +165,34 @@ namespace Inpres_Map
                 }
                 InpresMapPB.Invalidate();
             }
+
+            if(SelectMI.Checked == true)
+            {
+                int i = 0;
+                bool cartoObjTrouve = false;
+                for(i=0;(i<BLPOI.Count) && (cartoObjTrouve == false);i++)
+                {
+                    if (BLPOI[i].IsPointClose(e.Y, e.X, precisionForm) == true)
+                        cartoObjTrouve = true;
+                }
+                if(cartoObjTrouve == true)
+                {
+                    PGrid.SelectedObject = BLPOI[i - 1];
+                }
+            }
+
+            if(MoveMI.Checked == true)
+            {
+                if(PGrid.SelectedObject != null)
+                {
+                    
+                }
+            }
         }
 
         private void PoiLB_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            PGrid.SelectedObject = PoiLB.SelectedItem;
         }
 
         private void PoiTB_Click(object sender, EventArgs e)
@@ -213,6 +237,31 @@ namespace Inpres_Map
             currentPolyline = new Polyline();
             currentPolygon = new Polygon();
             ButtonValidate.Visible = false;
+            InpresMapPB.Invalidate();
+        }
+
+        private void PGrid_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void PolylineLB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PGrid.SelectedObject = PolylineLB.SelectedItem;
+        }
+
+        private void PolygonLB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PGrid.SelectedObject = PolygonLB.SelectedItem;
+        }
+
+        private void PGrid_SelectedObjectsChanged(object sender, EventArgs e)
+        {
+            PGrid.SelectedObject = sender;
+        }
+
+        private void PGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
             InpresMapPB.Invalidate();
         }
     }
