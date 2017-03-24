@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyMathLib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -83,17 +84,14 @@ namespace MyCartographyObjects
             Console.WriteLine(this.ToString());
             Console.ReadKey();
         }
-        public bool IsPointClose(double longi,double lat, double precision) //Méthode dans une autre librairie de classe math
+        public bool IsPointClose(double longi,double lat, double precision)
         {
             bool checkOK = false;
-            double X, Y;
-            X = Math.Abs(Long - longi);
-            Y = Math.Abs(Lat - lat);
-            if ((Math.Sqrt((Math.Pow(X, 2) + (Math.Pow(Y, 2))))) <= precision)
+            double res = 0;
+            res = MathLib.LongueurSegment(this.Long, longi, this.Lat, lat);
+            if (res <= precision)
                 checkOK = true;
-            else
-                checkOK = false;
-            return checkOK;
+            return checkOK;       
         }
         public void Draw(Graphics g)
         {

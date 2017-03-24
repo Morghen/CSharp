@@ -65,11 +65,10 @@
             // 
             this.InpresMapPB.BackColor = System.Drawing.Color.White;
             this.InpresMapPB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.InpresMapPB.Location = new System.Drawing.Point(317, 58);
-            this.InpresMapPB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.InpresMapPB.Location = new System.Drawing.Point(238, 47);
+            this.InpresMapPB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.InpresMapPB.Name = "InpresMapPB";
-            this.InpresMapPB.Size = new System.Drawing.Size(1055, 594);
-            this.InpresMapPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.InpresMapPB.Size = new System.Drawing.Size(792, 483);
             this.InpresMapPB.TabIndex = 0;
             this.InpresMapPB.TabStop = false;
             this.InpresMapPB.Click += new System.EventHandler(this.InpresMapPB_Click);
@@ -87,9 +86,9 @@
             this.ColorLabel,
             this.ColorButton,
             this.ModeDD});
-            this.ToolbarS.Location = new System.Drawing.Point(0, 28);
+            this.ToolbarS.Location = new System.Drawing.Point(0, 24);
             this.ToolbarS.Name = "ToolbarS";
-            this.ToolbarS.Size = new System.Drawing.Size(1387, 27);
+            this.ToolbarS.Size = new System.Drawing.Size(1040, 27);
             this.ToolbarS.TabIndex = 1;
             this.ToolbarS.Text = "toolStrip1";
             // 
@@ -132,7 +131,7 @@
             // 
             this.DescriptionTB.BackColor = System.Drawing.SystemColors.Window;
             this.DescriptionTB.Name = "DescriptionTB";
-            this.DescriptionTB.Size = new System.Drawing.Size(100, 27);
+            this.DescriptionTB.Size = new System.Drawing.Size(76, 27);
             this.DescriptionTB.Text = "Description";
             this.DescriptionTB.Click += new System.EventHandler(this.toolStripTextBox2_Click_1);
             // 
@@ -140,7 +139,7 @@
             // 
             this.ColorLabel.BackColor = System.Drawing.SystemColors.Control;
             this.ColorLabel.Name = "ColorLabel";
-            this.ColorLabel.Size = new System.Drawing.Size(45, 24);
+            this.ColorLabel.Size = new System.Drawing.Size(36, 24);
             this.ColorLabel.Text = "Color";
             this.ColorLabel.Click += new System.EventHandler(this.toolStripLabel1_Click);
             // 
@@ -165,7 +164,7 @@
             this.ModeDD.Image = ((System.Drawing.Image)(resources.GetObject("ModeDD.Image")));
             this.ModeDD.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ModeDD.Name = "ModeDD";
-            this.ModeDD.Size = new System.Drawing.Size(62, 24);
+            this.ModeDD.Size = new System.Drawing.Size(51, 24);
             this.ModeDD.Text = "Mode";
             // 
             // CreateMI
@@ -174,7 +173,7 @@
             this.CreateMI.CheckOnClick = true;
             this.CreateMI.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CreateMI.Name = "CreateMI";
-            this.CreateMI.Size = new System.Drawing.Size(127, 26);
+            this.CreateMI.Size = new System.Drawing.Size(108, 22);
             this.CreateMI.Text = "Create";
             this.CreateMI.Click += new System.EventHandler(this.CreateMI_Click);
             // 
@@ -182,7 +181,7 @@
             // 
             this.SelectMI.CheckOnClick = true;
             this.SelectMI.Name = "SelectMI";
-            this.SelectMI.Size = new System.Drawing.Size(127, 26);
+            this.SelectMI.Size = new System.Drawing.Size(108, 22);
             this.SelectMI.Text = "Select";
             this.SelectMI.Click += new System.EventHandler(this.SelectMI_Click);
             // 
@@ -190,7 +189,7 @@
             // 
             this.MoveMI.CheckOnClick = true;
             this.MoveMI.Name = "MoveMI";
-            this.MoveMI.Size = new System.Drawing.Size(127, 26);
+            this.MoveMI.Size = new System.Drawing.Size(108, 22);
             this.MoveMI.Text = "Move";
             this.MoveMI.Click += new System.EventHandler(this.MoveMI_Click);
             // 
@@ -203,8 +202,8 @@
             this.HelpMI});
             this.MenuS.Location = new System.Drawing.Point(0, 0);
             this.MenuS.Name = "MenuS";
-            this.MenuS.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.MenuS.Size = new System.Drawing.Size(1387, 28);
+            this.MenuS.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.MenuS.Size = new System.Drawing.Size(1040, 24);
             this.MenuS.TabIndex = 2;
             this.MenuS.Text = "menuStrip1";
             // 
@@ -213,14 +212,14 @@
             this.FileMI.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpenTS});
             this.FileMI.Name = "FileMI";
-            this.FileMI.Size = new System.Drawing.Size(44, 24);
+            this.FileMI.Size = new System.Drawing.Size(37, 20);
             this.FileMI.Text = "File";
             this.FileMI.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // OpenTS
             // 
             this.OpenTS.Name = "OpenTS";
-            this.OpenTS.Size = new System.Drawing.Size(129, 26);
+            this.OpenTS.Size = new System.Drawing.Size(112, 22);
             this.OpenTS.Text = "Open...";
             this.OpenTS.ToolTipText = "Ouvrir fichier";
             this.OpenTS.Click += new System.EventHandler(this.OpenTS_Click);
@@ -230,13 +229,13 @@
             this.ToolsMI.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OptionsMI});
             this.ToolsMI.Name = "ToolsMI";
-            this.ToolsMI.Size = new System.Drawing.Size(56, 24);
+            this.ToolsMI.Size = new System.Drawing.Size(47, 20);
             this.ToolsMI.Text = "Tools";
             // 
             // OptionsMI
             // 
             this.OptionsMI.Name = "OptionsMI";
-            this.OptionsMI.Size = new System.Drawing.Size(136, 26);
+            this.OptionsMI.Size = new System.Drawing.Size(116, 22);
             this.OptionsMI.Text = "Options";
             // 
             // HelpMI
@@ -244,22 +243,22 @@
             this.HelpMI.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AboutMI});
             this.HelpMI.Name = "HelpMI";
-            this.HelpMI.Size = new System.Drawing.Size(53, 24);
+            this.HelpMI.Size = new System.Drawing.Size(44, 20);
             this.HelpMI.Text = "Help";
             // 
             // AboutMI
             // 
             this.AboutMI.Name = "AboutMI";
-            this.AboutMI.Size = new System.Drawing.Size(125, 26);
+            this.AboutMI.Size = new System.Drawing.Size(107, 22);
             this.AboutMI.Text = "About";
             this.AboutMI.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // PGrid
             // 
-            this.PGrid.Location = new System.Drawing.Point(12, 444);
-            this.PGrid.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PGrid.Location = new System.Drawing.Point(9, 361);
+            this.PGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PGrid.Name = "PGrid";
-            this.PGrid.Size = new System.Drawing.Size(300, 208);
+            this.PGrid.Size = new System.Drawing.Size(225, 169);
             this.PGrid.TabIndex = 3;
             this.PGrid.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.PGrid_PropertyValueChanged);
             this.PGrid.Click += new System.EventHandler(this.PGrid_Click);
@@ -267,42 +266,40 @@
             // PolygonLB
             // 
             this.PolygonLB.FormattingEnabled = true;
-            this.PolygonLB.ItemHeight = 16;
-            this.PolygonLB.Location = new System.Drawing.Point(12, 338);
-            this.PolygonLB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PolygonLB.Location = new System.Drawing.Point(9, 275);
+            this.PolygonLB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PolygonLB.Name = "PolygonLB";
-            this.PolygonLB.Size = new System.Drawing.Size(300, 100);
+            this.PolygonLB.Size = new System.Drawing.Size(226, 82);
             this.PolygonLB.TabIndex = 4;
             this.PolygonLB.SelectedIndexChanged += new System.EventHandler(this.PolygonLB_SelectedIndexChanged);
             // 
             // PolylineLB
             // 
             this.PolylineLB.FormattingEnabled = true;
-            this.PolylineLB.ItemHeight = 16;
-            this.PolylineLB.Location = new System.Drawing.Point(12, 215);
-            this.PolylineLB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PolylineLB.Location = new System.Drawing.Point(9, 175);
+            this.PolylineLB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PolylineLB.Name = "PolylineLB";
-            this.PolylineLB.Size = new System.Drawing.Size(300, 100);
+            this.PolylineLB.Size = new System.Drawing.Size(226, 82);
             this.PolylineLB.TabIndex = 5;
             this.PolylineLB.SelectedIndexChanged += new System.EventHandler(this.PolylineLB_SelectedIndexChanged);
             // 
             // PoiLB
             // 
             this.PoiLB.FormattingEnabled = true;
-            this.PoiLB.ItemHeight = 16;
-            this.PoiLB.Location = new System.Drawing.Point(12, 92);
-            this.PoiLB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.PoiLB.Location = new System.Drawing.Point(9, 75);
+            this.PoiLB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PoiLB.Name = "PoiLB";
-            this.PoiLB.Size = new System.Drawing.Size(300, 100);
+            this.PoiLB.Size = new System.Drawing.Size(226, 82);
             this.PoiLB.TabIndex = 6;
             this.PoiLB.SelectedIndexChanged += new System.EventHandler(this.PoiLB_SelectedIndexChanged);
             // 
             // LabelPOI
             // 
             this.LabelPOI.AutoSize = true;
-            this.LabelPOI.Location = new System.Drawing.Point(12, 71);
+            this.LabelPOI.Location = new System.Drawing.Point(9, 58);
+            this.LabelPOI.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelPOI.Name = "LabelPOI";
-            this.LabelPOI.Size = new System.Drawing.Size(31, 17);
+            this.LabelPOI.Size = new System.Drawing.Size(25, 13);
             this.LabelPOI.TabIndex = 7;
             this.LabelPOI.Text = "POI";
             this.LabelPOI.Click += new System.EventHandler(this.label1_Click);
@@ -310,27 +307,28 @@
             // LabelPolyline
             // 
             this.LabelPolyline.AutoSize = true;
-            this.LabelPolyline.Location = new System.Drawing.Point(9, 194);
+            this.LabelPolyline.Location = new System.Drawing.Point(7, 158);
+            this.LabelPolyline.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelPolyline.Name = "LabelPolyline";
-            this.LabelPolyline.Size = new System.Drawing.Size(57, 17);
+            this.LabelPolyline.Size = new System.Drawing.Size(43, 13);
             this.LabelPolyline.TabIndex = 8;
             this.LabelPolyline.Text = "Polyline";
             // 
             // LabelPolygon
             // 
             this.LabelPolygon.AutoSize = true;
-            this.LabelPolygon.Location = new System.Drawing.Point(12, 318);
+            this.LabelPolygon.Location = new System.Drawing.Point(9, 258);
+            this.LabelPolygon.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelPolygon.Name = "LabelPolygon";
-            this.LabelPolygon.Size = new System.Drawing.Size(59, 17);
+            this.LabelPolygon.Size = new System.Drawing.Size(45, 13);
             this.LabelPolygon.TabIndex = 9;
             this.LabelPolygon.Text = "Polygon";
             // 
             // ButtonValidate
             // 
-            this.ButtonValidate.Location = new System.Drawing.Point(361, 30);
-            this.ButtonValidate.Margin = new System.Windows.Forms.Padding(4);
+            this.ButtonValidate.Location = new System.Drawing.Point(271, 24);
             this.ButtonValidate.Name = "ButtonValidate";
-            this.ButtonValidate.Size = new System.Drawing.Size(100, 28);
+            this.ButtonValidate.Size = new System.Drawing.Size(75, 23);
             this.ButtonValidate.TabIndex = 11;
             this.ButtonValidate.Text = "Polygon OK";
             this.ButtonValidate.UseVisualStyleBackColor = true;
@@ -339,10 +337,10 @@
             // 
             // InpresMapForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1387, 665);
+            this.ClientSize = new System.Drawing.Size(1040, 540);
             this.Controls.Add(this.ButtonValidate);
             this.Controls.Add(this.LabelPolygon);
             this.Controls.Add(this.LabelPolyline);
@@ -355,7 +353,7 @@
             this.Controls.Add(this.ToolbarS);
             this.Controls.Add(this.MenuS);
             this.MainMenuStrip = this.MenuS;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "InpresMapForm";
             this.Text = "Inpres-Map";
             ((System.ComponentModel.ISupportInitialize)(this.InpresMapPB)).EndInit();

@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace MyCartographyObjects
 {
-    public class Polyline : CartoObj,IPointy,IComparable<Polyline>,IEquatable<Polyline>
+    public class Polyline : CartoObj,IIsPointClose,IPointy,IComparable<Polyline>,IEquatable<Polyline>
     {
         #region VARIABLES MEMBRES
         private static int _compteur = 0;
@@ -103,22 +103,19 @@ namespace MyCartographyObjects
             Console.ReadKey();
             return;
         }
-        public bool IsPointClose(double longi, double lat, double precision) // Voir POI
+        public bool IsPointClose(double longi, double lat, double precision)
         {
-            bool checkOK;
-            double X, Y;
-            foreach(POI unPOI in ListPOI)
+            bool checkOk = false;
+            double SegmentAB, SegmentBC, SegmentAC;
+            for(int i = 0;i<(ListPOI.Count -1);i++)
             {
-                X = Math.Abs(unPOI.Lat - lat);
-                Y = Math.Abs(unPOI.Long - longi);
-                if ((Math.Sqrt((X*X) + (Y*Y)) <= precision))
-                {
-                    checkOK = true;
-                    return checkOK;
-                }
+                SegmentAB = MathLib.LongueurSegment(this.ListPOI[i].Long, longi, this.ListPOI[i + 1].Lat, lat);
+                SegmentBC = MathLib.LongueurSegment(longi, this.ListPOI[i + 1].Long, lat, this.ListPOI[i + 1].Lat);
+                SegmentAC = MathLib.LongueurSegment(this.ListPOI[i].Long, this.ListPOI[i + 1].Long, this.ListPOI[i].Lat, this.ListPOI[i + 1].Lat);
+                if ((SegmentAB + SegmentBC).CompareTo(SegmentAC) <= 0)
+                    return checkOk = true;
             }
-            checkOK = false;
-            return checkOK;
+            return checkOk;
         }
         public int CompareTo(Polyline unePoly)
         {
@@ -132,12 +129,7 @@ namespace MyCartographyObjects
             {
                 tmpobj = tmpobj + MathLib.LongueurSegment(unePoly.ListPOI[i].Long, unePoly.ListPOI[i + 1].Long, unePoly.ListPOI[i].Lat, unePoly.ListPOI[i+1].Lat);
             }
-            if (Math.Abs(tmpthis - tmpobj) < precision)
-                return 0;
-            else if ((tmpthis - tmpobj) > 0)
-                return 1;
-            else
-                return -1;
+            return Math.Abs(tmpthis - tmpobj).CompareTo(precision);
         }
         public bool Equals(Polyline unePoly)
         {
@@ -151,10 +143,11 @@ namespace MyCartographyObjects
             {
                 tmpobj = tmpobj + MathLib.LongueurSegment(unePoly.ListPOI[i].Long, unePoly.ListPOI[i + 1].Long, unePoly.ListPOI[i].Lat, unePoly.ListPOI[i + 1].Lat);
             }
-            if (Math.Abs(tmpthis - tmpobj) < precision)
+            if((tmpthis - tmpobj).CompareTo(precision) == 0)
+            {
                 return true;
-            else
-                return false;
+            }
+            return false;
         }
         public void Draw(Graphics g)
         {
