@@ -56,6 +56,7 @@
             this.LabelPolyline = new System.Windows.Forms.Label();
             this.LabelPolygon = new System.Windows.Forms.Label();
             this.ButtonValidate = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.InpresMapPB)).BeginInit();
             this.ToolbarS.SuspendLayout();
             this.MenuS.SuspendLayout();
@@ -66,7 +67,7 @@
             this.InpresMapPB.BackColor = System.Drawing.Color.White;
             this.InpresMapPB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.InpresMapPB.Location = new System.Drawing.Point(238, 47);
-            this.InpresMapPB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.InpresMapPB.Margin = new System.Windows.Forms.Padding(2);
             this.InpresMapPB.Name = "InpresMapPB";
             this.InpresMapPB.Size = new System.Drawing.Size(792, 483);
             this.InpresMapPB.TabIndex = 0;
@@ -77,6 +78,7 @@
             // 
             // ToolbarS
             // 
+            this.ToolbarS.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.ToolbarS.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ToolbarS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.PoiTB,
@@ -85,12 +87,14 @@
             this.DescriptionTB,
             this.ColorLabel,
             this.ColorButton,
-            this.ModeDD});
+            this.ModeDD,
+            this.DeleteButton});
             this.ToolbarS.Location = new System.Drawing.Point(0, 24);
             this.ToolbarS.Name = "ToolbarS";
             this.ToolbarS.Size = new System.Drawing.Size(1040, 27);
             this.ToolbarS.TabIndex = 1;
             this.ToolbarS.Text = "toolStrip1";
+            this.ToolbarS.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.ToolbarS_ItemClicked);
             // 
             // PoiTB
             // 
@@ -256,7 +260,7 @@
             // PGrid
             // 
             this.PGrid.Location = new System.Drawing.Point(9, 361);
-            this.PGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PGrid.Margin = new System.Windows.Forms.Padding(2);
             this.PGrid.Name = "PGrid";
             this.PGrid.Size = new System.Drawing.Size(225, 169);
             this.PGrid.TabIndex = 3;
@@ -267,7 +271,7 @@
             // 
             this.PolygonLB.FormattingEnabled = true;
             this.PolygonLB.Location = new System.Drawing.Point(9, 275);
-            this.PolygonLB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PolygonLB.Margin = new System.Windows.Forms.Padding(2);
             this.PolygonLB.Name = "PolygonLB";
             this.PolygonLB.Size = new System.Drawing.Size(226, 82);
             this.PolygonLB.TabIndex = 4;
@@ -277,7 +281,7 @@
             // 
             this.PolylineLB.FormattingEnabled = true;
             this.PolylineLB.Location = new System.Drawing.Point(9, 175);
-            this.PolylineLB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PolylineLB.Margin = new System.Windows.Forms.Padding(2);
             this.PolylineLB.Name = "PolylineLB";
             this.PolylineLB.Size = new System.Drawing.Size(226, 82);
             this.PolylineLB.TabIndex = 5;
@@ -287,7 +291,7 @@
             // 
             this.PoiLB.FormattingEnabled = true;
             this.PoiLB.Location = new System.Drawing.Point(9, 75);
-            this.PoiLB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PoiLB.Margin = new System.Windows.Forms.Padding(2);
             this.PoiLB.Name = "PoiLB";
             this.PoiLB.Size = new System.Drawing.Size(226, 82);
             this.PoiLB.TabIndex = 6;
@@ -326,7 +330,7 @@
             // 
             // ButtonValidate
             // 
-            this.ButtonValidate.Location = new System.Drawing.Point(271, 24);
+            this.ButtonValidate.Location = new System.Drawing.Point(362, 24);
             this.ButtonValidate.Name = "ButtonValidate";
             this.ButtonValidate.Size = new System.Drawing.Size(75, 23);
             this.ButtonValidate.TabIndex = 11;
@@ -334,6 +338,16 @@
             this.ButtonValidate.UseVisualStyleBackColor = true;
             this.ButtonValidate.Visible = false;
             this.ButtonValidate.Click += new System.EventHandler(this.ButtonValidate_Click);
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.DeleteButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteButton.Image")));
+            this.DeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(91, 24);
+            this.DeleteButton.Text = "Delete Selected";
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // InpresMapForm
             // 
@@ -353,7 +367,7 @@
             this.Controls.Add(this.ToolbarS);
             this.Controls.Add(this.MenuS);
             this.MainMenuStrip = this.MenuS;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "InpresMapForm";
             this.Text = "Inpres-Map";
             ((System.ComponentModel.ISupportInitialize)(this.InpresMapPB)).EndInit();
@@ -395,6 +409,7 @@
         private System.Windows.Forms.Label LabelPolygon;
         private System.Windows.Forms.ToolStripMenuItem OpenTS;
         private System.Windows.Forms.Button ButtonValidate;
+        private System.Windows.Forms.ToolStripButton DeleteButton;
     }
 }
 

@@ -14,6 +14,7 @@ namespace MyCartographyObjects
         protected int _id;
         protected Color _color;
         private string _description;
+        private int _largeur;
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
         #region CONSTRUCTEUR
@@ -21,6 +22,12 @@ namespace MyCartographyObjects
         { }
         #endregion
         #region PROPRIETES
+        [BrowsableAttribute(false)]
+        public int Largeur
+        {
+            get { return _largeur; }
+            set { _largeur = value; }
+        }
         [BrowsableAttribute(false)]
         public int Id
         {

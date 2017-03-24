@@ -19,7 +19,10 @@ namespace Inpres_Map
         BindingList<Polygon> BLPGON = new BindingList<Polygon>();
         Polyline currentPolyline = new Polyline();
         Polygon currentPolygon = new Polygon();
-        double precisionForm = 50;
+        double currentX = 0, currentY = 0;
+        double precisionForm = 15;
+        int largeurForm = 1;
+
         public InpresMapForm()
         {
             InitializeComponent();
@@ -131,13 +134,13 @@ namespace Inpres_Map
         {
             if(CreateMI.Checked == true && PoiTB.Checked == true)
             {
-                POI unPOI = new POI(e.Y, e.X,DescriptionTB.Text,ColorButton.BackColor);
+                POI unPOI = new POI(e.Y, e.X,DescriptionTB.Text,ColorButton.BackColor,largeurForm);
                 BLPOI.Add(unPOI);
                 InpresMapPB.Invalidate();
             }
             else if(CreateMI.Checked == true && PolylineTB.Checked == true)
             {
-                POI polyPOI = new POI(e.Y, e.X,DescriptionTB.Text, ColorButton.BackColor);
+                POI polyPOI = new POI(e.Y, e.X,DescriptionTB.Text, ColorButton.BackColor,largeurForm);
                 currentPolyline.Colour = ColorButton.BackColor;
                 currentPolyline.AddPOI(polyPOI);
                 BLPOI.Add(polyPOI);
@@ -152,7 +155,7 @@ namespace Inpres_Map
             else if(CreateMI.Checked == true && PolygonTB.Checked == true)
             {
                 ButtonValidate.Visible = true;
-                POI gonPOI = new POI(e.Y, e.X, DescriptionTB.Text, ColorButton.BackColor);
+                POI gonPOI = new POI(e.Y, e.X, DescriptionTB.Text, ColorButton.BackColor,largeurForm);
                 currentPolygon.Colour = ColorButton.BackColor;
                 currentPolyline.Colour = ColorButton.BackColor;
                 currentPolyline.AddPOI(gonPOI);
@@ -168,16 +171,64 @@ namespace Inpres_Map
 
             if(SelectMI.Checked == true)
             {
+                // POI
                 int i = 0;
                 bool cartoObjTrouve = false;
-                for(i=0;(i<BLPOI.Count) && (cartoObjTrouve == false);i++)
+                DeleteButton.Enabled = true;
+                for(i=0;(i<BLPOI.Count) && cartoObjTrouve == false;i++)
                 {
-                    if (BLPOI[i].IsPointClose(e.Y, e.X, precisionForm) == true)
+                    if (BLPOI[i].IsPointClose(e.X, e.Y, precisionForm) == true)
                         cartoObjTrouve = true;
                 }
-                if(cartoObjTrouve == true)
+                if (cartoObjTrouve == true)
                 {
+                    if (PGrid.SelectedObject != null)
+                        (PGrid.SelectedObject as CartoObj).Largeur = largeurForm;
                     PGrid.SelectedObject = BLPOI[i - 1];
+                    (PGrid.SelectedObject as CartoObj).Largeur += 4;
+                    InpresMapPB.Invalidate();
+                }
+                else
+                {
+                    // Polyline
+                    cartoObjTrouve = false;
+                    for (i = 0; i < (BLPLINE.Count) && cartoObjTrouve == false; i++)
+                    {
+                        if (BLPLINE[i].IsPointClose(e.X, e.Y, precisionForm) == true)
+                        {
+                            cartoObjTrouve = true;
+                        }
+                    }
+                    if (cartoObjTrouve == true)
+                    {
+                        if (PGrid.SelectedObject != null)
+                            (PGrid.SelectedObject as CartoObj).Largeur = largeurForm;
+                        PGrid.SelectedObject = BLPLINE[i - 1];
+                        (PGrid.SelectedObject as CartoObj).Largeur += 4;
+                        currentX = e.X;
+                        currentY = e.Y;
+                        InpresMapPB.Invalidate();
+                    }
+                    else
+                    {
+                        // Polygon
+                        cartoObjTrouve = false;
+                        for (i = 0; i < (BLPGON.Count) && cartoObjTrouve == false; i++)
+                        {
+                            if (BLPGON[i].IsPointClose(e.X, e.Y, precisionForm) == true)
+                            {
+                                cartoObjTrouve = true;
+                            }
+                        }
+                        if (cartoObjTrouve == true)
+                        {
+                            if (PGrid.SelectedObject != null)
+                                (PGrid.SelectedObject as CartoObj).Largeur = largeurForm;
+                            PGrid.SelectedObject = BLPGON[i - 1];
+                            (PGrid.SelectedObject as CartoObj).Largeur += 4;
+                            InpresMapPB.Invalidate();
+                        }
+                    }
                 }
             }
 
@@ -185,16 +236,76 @@ namespace Inpres_Map
             {
                 if(PGrid.SelectedObject != null)
                 {
-                    
+                    if(PGrid.SelectedObject is POI)
+                    {
+                        (PGrid.SelectedObject as POI).Long = e.X;
+                        (PGrid.SelectedObject as POI).Lat = e.Y;
+                        InpresMapPB.Invalidate();
+                    }
+                    if (PGrid.SelectedObject is Polyline)
+                    {
+                        // Decalage de chaque points
+                        foreach (POI unPOI in (PGrid.SelectedObject as Polyline).ListPOI)
+                        {
+                            unPOI.Lat = unPOI.Lat - (currentY - e.Y);
+                            unPOI.Long = unPOI.Long - (currentX - e.X);
+                        }
+                        currentX = e.X;
+                        currentY = e.Y;
+                        InpresMapPB.Invalidate();
+                    }
                 }
             }
         }
 
         private void PoiLB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PGrid.SelectedObject = PoiLB.SelectedItem;
+            if (PGrid.SelectedObject != null)
+                (PGrid.SelectedObject as CartoObj).Largeur = largeurForm;
+            if (PoiLB.SelectedItem != null)
+            {
+                Deselection(1);
+                PGrid.SelectedObject = PoiLB.SelectedItem;
+                (PGrid.SelectedObject as CartoObj).Largeur += 4;
+            }
+            InpresMapPB.Invalidate();
         }
 
+        private void Deselection(int ch)
+        {
+            switch(ch)
+            {
+                case 0:
+                    if (PGrid.SelectedObject is POI)
+                    {
+                        PolylineLB.SelectedItem = null;
+                        PolygonLB.SelectedItem = null;
+                    }
+                    if (PGrid.SelectedObject is Polyline)
+                    {
+                        PoiLB.SelectedItem = null;
+                        PolygonLB.SelectedItem = null;
+                    }
+                    if (PGrid.SelectedObject is Polygon)
+                    {
+                        PolylineLB.SelectedItem = null;
+                        PoiLB.SelectedItem = null;
+                    }
+                    break;
+                case 1:
+                    PolylineLB.SelectedItem = null;
+                    PolygonLB.SelectedItem = null;
+                    break;
+                case 2:
+                    PoiLB.SelectedItem = null;
+                    PolygonLB.SelectedItem = null;
+                    break;
+                case 3:
+                    PolylineLB.SelectedItem = null;
+                    PoiLB.SelectedItem = null;
+                    break;
+            }
+        }
         private void PoiTB_Click(object sender, EventArgs e)
         {
             PolylineTB.Checked = false;
@@ -205,7 +316,6 @@ namespace Inpres_Map
         {
             PoiTB.Checked = false;
             PolygonTB.Checked = false;
-
         }
 
         private void PolygonTB_Click(object sender, EventArgs e)
@@ -236,7 +346,6 @@ namespace Inpres_Map
             BLPGON.Add(currentPolygon);
             currentPolyline = new Polyline();
             currentPolygon = new Polygon();
-            ButtonValidate.Visible = false;
             InpresMapPB.Invalidate();
         }
 
@@ -247,17 +356,65 @@ namespace Inpres_Map
 
         private void PolylineLB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PGrid.SelectedObject = PolylineLB.SelectedItem;
+            if (PGrid.SelectedObject != null)
+                (PGrid.SelectedObject as CartoObj).Largeur = largeurForm;
+            if (PolylineLB.SelectedItem != null)
+            {
+                Deselection(2);
+                PGrid.SelectedObject = PolylineLB.SelectedItem;
+                (PGrid.SelectedObject as CartoObj).Largeur += 4;
+            }
+            InpresMapPB.Invalidate();
         }
 
         private void PolygonLB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PGrid.SelectedObject = PolygonLB.SelectedItem;
+            if (PGrid.SelectedObject != null)
+                (PGrid.SelectedObject as CartoObj).Largeur = largeurForm;
+            if (PolygonLB.SelectedItem != null)
+            {
+                Deselection(3);
+                PGrid.SelectedObject = PolygonLB.SelectedItem;
+                (PGrid.SelectedObject as CartoObj).Largeur += 4;
+            }
+            InpresMapPB.Invalidate();
         }
 
-        private void PGrid_SelectedObjectsChanged(object sender, EventArgs e)
+        private void ToolbarS_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            PGrid.SelectedObject = sender;
+
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (PGrid.SelectedObject != null)
+            {
+                if (PGrid.SelectedObject is POI)
+                {
+                    foreach (Polyline unePolyline in BLPLINE)
+                    {
+                        foreach (POI unPOI in unePolyline.ListPOI)
+                        {
+                            if (unPOI.Id == (PGrid.SelectedObject as POI).Id)
+                            {
+                                unePolyline.ListPOI.Remove(unPOI);
+                                break;
+                            }
+                        }
+                    }
+                    BLPOI.Remove(PGrid.SelectedObject as POI);
+                }
+                if (PGrid.SelectedObject is Polyline)
+                {
+                    BLPLINE.Remove(PGrid.SelectedObject as Polyline);
+                }
+                if (PGrid.SelectedObject is Polygon)
+                {
+                    BLPGON.Remove(PGrid.SelectedObject as Polygon);
+                }
+                PGrid.SelectedObject = null;
+                InpresMapPB.Invalidate();
+            }
         }
 
         private void PGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)

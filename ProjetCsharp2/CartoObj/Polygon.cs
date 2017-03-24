@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyCartographyObjects
 {
-    public class Polygon : CartoObj,IPointy
+    public class Polygon : CartoObj,IPointy,IIsPointClose
     {
         #region VARIABLES MEMBRES
         private static int _compteur = 0;
@@ -20,12 +20,14 @@ namespace MyCartographyObjects
             NextId();
             _listPolyline = new List<Polyline>();
             Description = "Polygon";
+            Largeur = 1;
         }
-        public Polygon(Polyline unPolyline,string description,Color color)
+        public Polygon(Polyline unPolyline,string description,Color color,int largeur)
         {
             NextId();
             _listPolyline = new List<Polyline>();
             AddPolyline(unPolyline);
+            Largeur = largeur;
             if (description != "Description")
                 Description = description;
             else
@@ -96,6 +98,15 @@ namespace MyCartographyObjects
             Console.WriteLine(this.ToString());
             Console.ReadKey();
             return;
+        }
+        public bool IsPointClose(double longi,double lat,double prec)
+        {
+            foreach(Polyline unePoly in ListPolyline)
+            {
+                if (unePoly.IsPointClose(longi, lat, prec) == true)
+                    return true;
+            }
+            return false;
         }
         public void Draw(Graphics g)
         {

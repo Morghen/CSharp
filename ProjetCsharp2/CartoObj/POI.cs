@@ -18,11 +18,12 @@ namespace MyCartographyObjects
         private double _long;
         #endregion
         #region CONSTRUCTEURS
-        public POI(double lat,double longi,string description,Color color)
+        public POI(double lat,double longi,string description,Color color,int largeur)
         {
             NextId();
             Lat = lat;
             Long = longi;
+            Largeur = largeur;
             if (description != "Description")
                 Description = description;
             else
@@ -33,11 +34,12 @@ namespace MyCartographyObjects
                 Colour = Color.Red;
             
         }
-        public POI(int lat,int longi,string description,Color color)
+        public POI(int lat,int longi,string description,Color color,int largeur)
         {
             NextId();
             Lat = lat;
             Long = longi;
+            Largeur = largeur;
             if (description != "Description")
                 Description = description;
             else
@@ -95,7 +97,7 @@ namespace MyCartographyObjects
         }
         public void Draw(Graphics g)
         {
-            Pen pen = new Pen(Colour);
+            Pen pen = new Pen(Colour,Largeur);
             g.DrawLine(pen, (float)Long-5, (float)Lat-5, (float)Long +5,(float)Lat+5);
             g.DrawLine(pen, (float)Long+5, (float)Lat-5, (float)Long -5,(float)Lat+5);
         }

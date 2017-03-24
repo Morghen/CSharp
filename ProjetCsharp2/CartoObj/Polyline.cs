@@ -20,13 +20,15 @@ namespace MyCartographyObjects
         {
             NextId();
             _listPOI = new List<POI>();
+            Largeur = 1;
             Description = "Polyline";
             Colour = Color.Red;
         }
-        public Polyline(POI refPOI,string description,Color color)
+        public Polyline(POI refPOI,string description,Color color,int largeur)
         {
             NextId();
             _listPOI = new List<POI>();
+            Largeur = largeur;
             AddPOI(refPOI);
             if (description != "Description")
                 Description = description;
@@ -151,7 +153,7 @@ namespace MyCartographyObjects
         }
         public void Draw(Graphics g)
         {
-            Pen pen = new Pen(Colour);
+            Pen pen = new Pen(Colour,Largeur);
             for(int i=0;i<(ListPOI.Count() - 1); i++)
                 g.DrawLine(pen, (float)ListPOI[i].Long, (float)ListPOI[i].Lat, (float)ListPOI[i + 1].Long, (float)ListPOI[i + 1].Lat);
         }
