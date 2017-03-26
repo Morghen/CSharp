@@ -43,28 +43,13 @@ namespace Inpres_Map
 
             public double Precision
             {
-                get
-                {
-                    return _precision;
-                }
-
-                set
-                {
-                    _precision = value;
-                }
+                get { return _precision; }
+                set { _precision = value; }
             }
-
             public Color Colour
             {
-                get
-                {
-                    return _color;
-                }
-
-                set
-                {
-                    _color = value;
-                }
+                get { return _color; }
+                set { _color = value; }
             }
 
             public ParamEventArgs(double precision, Color color)

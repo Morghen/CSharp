@@ -417,6 +417,10 @@ namespace Inpres_Map
                 }
                 if (PGrid.SelectedObject is Polyline)
                 {
+                    foreach(POI unPOI in (PGrid.SelectedObject as Polyline).ListPOI)
+                    {
+                        BLPOI.Remove(unPOI);
+                    }
                     BLPLINE.Remove(PGrid.SelectedObject as Polyline);
                 }
                 if (PGrid.SelectedObject is Polygon)
