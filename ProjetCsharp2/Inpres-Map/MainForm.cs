@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MyCartographyObjects;
 using System.IO;
+using static Inpres_Map.OptionWindow;
 
 namespace Inpres_Map
 {
@@ -20,8 +21,18 @@ namespace Inpres_Map
         Polyline currentPolyline = new Polyline();
         Polygon currentPolygon = new Polygon();
         double currentX = 0, currentY = 0;
-        double precisionForm = 15;
-        int largeurForm = 1;
+        static public double precisionForm = 15;
+        static public int largeurForm = 1;
+        static public Color TBColor = Color.Black;
+
+        private void WhenOptionWindowIsUpdated(object sender, ParamEventArgs e)
+        {
+            precisionForm = e.Precision;
+            TBColor = e.Colour;
+            PoiLB.ForeColor = TBColor;
+            PolylineLB.ForeColor = TBColor;
+            PolygonLB.ForeColor = TBColor;
+        }
 
         public InpresMapForm()
         {
@@ -415,6 +426,13 @@ namespace Inpres_Map
                 PGrid.SelectedObject = null;
                 InpresMapPB.Invalidate();
             }
+        }
+
+        private void OptionsMI_Click(object sender, EventArgs e)
+        {
+            OptionWindow optionForm = new OptionWindow(new ParamEventArgs(precisionForm, TBColor));
+            optionForm.OptionModified += WhenOptionWindowIsUpdated;
+            optionForm.Show(this);
         }
 
         private void PGrid_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)

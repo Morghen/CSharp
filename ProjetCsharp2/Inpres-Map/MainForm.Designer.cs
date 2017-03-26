@@ -41,6 +41,7 @@
             this.CreateMI = new System.Windows.Forms.ToolStripMenuItem();
             this.SelectMI = new System.Windows.Forms.ToolStripMenuItem();
             this.MoveMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteButton = new System.Windows.Forms.ToolStripButton();
             this.MenuS = new System.Windows.Forms.MenuStrip();
             this.FileMI = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenTS = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +57,6 @@
             this.LabelPolyline = new System.Windows.Forms.Label();
             this.LabelPolygon = new System.Windows.Forms.Label();
             this.ButtonValidate = new System.Windows.Forms.Button();
-            this.DeleteButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.InpresMapPB)).BeginInit();
             this.ToolbarS.SuspendLayout();
             this.MenuS.SuspendLayout();
@@ -197,6 +197,16 @@
             this.MoveMI.Text = "Move";
             this.MoveMI.Click += new System.EventHandler(this.MoveMI_Click);
             // 
+            // DeleteButton
+            // 
+            this.DeleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.DeleteButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteButton.Image")));
+            this.DeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(91, 24);
+            this.DeleteButton.Text = "Delete Selected";
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
             // MenuS
             // 
             this.MenuS.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -239,8 +249,9 @@
             // OptionsMI
             // 
             this.OptionsMI.Name = "OptionsMI";
-            this.OptionsMI.Size = new System.Drawing.Size(116, 22);
+            this.OptionsMI.Size = new System.Drawing.Size(152, 22);
             this.OptionsMI.Text = "Options";
+            this.OptionsMI.Click += new System.EventHandler(this.OptionsMI_Click);
             // 
             // HelpMI
             // 
@@ -338,16 +349,6 @@
             this.ButtonValidate.UseVisualStyleBackColor = true;
             this.ButtonValidate.Visible = false;
             this.ButtonValidate.Click += new System.EventHandler(this.ButtonValidate_Click);
-            // 
-            // DeleteButton
-            // 
-            this.DeleteButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.DeleteButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteButton.Image")));
-            this.DeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(91, 24);
-            this.DeleteButton.Text = "Delete Selected";
-            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // InpresMapForm
             // 
