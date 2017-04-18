@@ -421,7 +421,7 @@ namespace Inpres_Map
                     {
                         BLPOI.Remove(unPOI);
                     }
-                    bool ret = BLPLINE.Remove(PGrid.SelectedObject as Polyline);
+                    BLPLINE.Remove(PGrid.SelectedObject as Polyline);
                 }
                 if (PGrid.SelectedObject is Polygon)
                 {
