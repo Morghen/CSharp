@@ -7,11 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MyTripManagerClasses;
 
 namespace TripManager
 {
     public partial class TripManager : Form
     {
+        public Trip unVoyage = new Trip();
+
+        private void WhenNewTripIsCreated(object sender, ParamEventArgs e)
+        {
+            unVoyage.Tag = e.Tag;
+            unVoyage.DateDeb = e.DateDeb;
+            unVoyage.DateFin = e.DateFin;
+            unVoyage.Description = e.Description; 
+        }
         public TripManager()
         {
             InitializeComponent();
@@ -39,9 +49,9 @@ namespace TripManager
 
         private void AddMenu_Click(object sender, EventArgs e)
         {
-            string Msg = "Fonction pas encore implémentée\n";
-            MessageBoxButtons buttons = MessageBoxButtons.OK;
-            MessageBox.Show(Msg, "New Trip", buttons);
+            AddForm AddWindow = new AddForm(new ParamEventArgs(unVoyage.Tag,unVoyage.DateDeb,unVoyage.DateFin,unVoyage.Description));
+            AddWindow.NewTripModified += WhenNewTripIsCreated;
+            AddWindow.Show(this);
         }
 
         private void LoadMenu_Click(object sender, EventArgs e)

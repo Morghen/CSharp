@@ -31,27 +31,27 @@
             this.GMapArea = new GMap.NET.WindowsForms.GMapControl();
             this.ToolboxTM = new System.Windows.Forms.ToolStrip();
             this.MenuTM = new System.Windows.Forms.MenuStrip();
-            this.AboutMI = new System.Windows.Forms.ToolStripMenuItem();
-            this.TrajetLabel = new System.Windows.Forms.Label();
-            this.SitesLabel = new System.Windows.Forms.Label();
             this.FileMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.ManagementMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.SplitContaierGD = new System.Windows.Forms.SplitContainer();
-            this.SitesLB = new System.Windows.Forms.ListBox();
-            this.TrajetTV = new System.Windows.Forms.TreeView();
-            this.PanelTrajet = new System.Windows.Forms.Panel();
-            this.PanelSites = new System.Windows.Forms.Panel();
             this.AddMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.LoadMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.ManagementMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.TrajetLabel = new System.Windows.Forms.Label();
+            this.SitesLabel = new System.Windows.Forms.Label();
+            this.SplitContaierGD = new System.Windows.Forms.SplitContainer();
+            this.PanelSites = new System.Windows.Forms.Panel();
+            this.SitesLB = new System.Windows.Forms.ListBox();
+            this.PanelTrajet = new System.Windows.Forms.Panel();
+            this.TrajetTV = new System.Windows.Forms.TreeView();
             this.MenuTM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContaierGD)).BeginInit();
             this.SplitContaierGD.Panel1.SuspendLayout();
             this.SplitContaierGD.Panel2.SuspendLayout();
             this.SplitContaierGD.SuspendLayout();
-            this.PanelTrajet.SuspendLayout();
             this.PanelSites.SuspendLayout();
+            this.PanelTrajet.SuspendLayout();
             this.SuspendLayout();
             // 
             // GMapArea
@@ -102,6 +102,51 @@
             this.MenuTM.Size = new System.Drawing.Size(1213, 28);
             this.MenuTM.TabIndex = 2;
             // 
+            // FileMenu
+            // 
+            this.FileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddMenu,
+            this.LoadMenu,
+            this.SaveMenu});
+            this.FileMenu.Name = "FileMenu";
+            this.FileMenu.Size = new System.Drawing.Size(44, 24);
+            this.FileMenu.Text = "File";
+            // 
+            // AddMenu
+            // 
+            this.AddMenu.Name = "AddMenu";
+            this.AddMenu.Size = new System.Drawing.Size(181, 26);
+            this.AddMenu.Text = "New Trip...";
+            this.AddMenu.Click += new System.EventHandler(this.AddMenu_Click);
+            // 
+            // LoadMenu
+            // 
+            this.LoadMenu.Name = "LoadMenu";
+            this.LoadMenu.Size = new System.Drawing.Size(181, 26);
+            this.LoadMenu.Text = "Load Trip...";
+            this.LoadMenu.Click += new System.EventHandler(this.LoadMenu_Click);
+            // 
+            // SaveMenu
+            // 
+            this.SaveMenu.Name = "SaveMenu";
+            this.SaveMenu.Size = new System.Drawing.Size(181, 26);
+            this.SaveMenu.Text = "Save Trip...";
+            this.SaveMenu.Click += new System.EventHandler(this.SaveMenu_Click);
+            // 
+            // ManagementMenu
+            // 
+            this.ManagementMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem});
+            this.ManagementMenu.Name = "ManagementMenu";
+            this.ManagementMenu.Size = new System.Drawing.Size(109, 24);
+            this.ManagementMenu.Text = "Management";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
             // AboutMI
             // 
             this.AboutMI.Name = "AboutMI";
@@ -128,24 +173,6 @@
             this.SitesLabel.Text = "Sites";
             this.SitesLabel.Click += new System.EventHandler(this.SitesLabel_Click);
             // 
-            // FileMenu
-            // 
-            this.FileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AddMenu,
-            this.LoadMenu,
-            this.SaveMenu});
-            this.FileMenu.Name = "FileMenu";
-            this.FileMenu.Size = new System.Drawing.Size(44, 24);
-            this.FileMenu.Text = "File";
-            // 
-            // ManagementMenu
-            // 
-            this.ManagementMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem});
-            this.ManagementMenu.Name = "ManagementMenu";
-            this.ManagementMenu.Size = new System.Drawing.Size(109, 24);
-            this.ManagementMenu.Text = "Management";
-            // 
             // SplitContaierGD
             // 
             this.SplitContaierGD.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -168,6 +195,14 @@
             this.SplitContaierGD.SplitterDistance = 343;
             this.SplitContaierGD.TabIndex = 7;
             // 
+            // PanelSites
+            // 
+            this.PanelSites.Controls.Add(this.SitesLB);
+            this.PanelSites.Location = new System.Drawing.Point(2, 304);
+            this.PanelSites.Name = "PanelSites";
+            this.PanelSites.Size = new System.Drawing.Size(399, 262);
+            this.PanelSites.TabIndex = 8;
+            // 
             // SitesLB
             // 
             this.SitesLB.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -178,14 +213,6 @@
             this.SitesLB.Size = new System.Drawing.Size(399, 262);
             this.SitesLB.TabIndex = 5;
             // 
-            // TrajetTV
-            // 
-            this.TrajetTV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TrajetTV.Location = new System.Drawing.Point(0, 0);
-            this.TrajetTV.Name = "TrajetTV";
-            this.TrajetTV.Size = new System.Drawing.Size(399, 185);
-            this.TrajetTV.TabIndex = 3;
-            // 
             // PanelTrajet
             // 
             this.PanelTrajet.Controls.Add(this.TrajetTV);
@@ -194,40 +221,13 @@
             this.PanelTrajet.Size = new System.Drawing.Size(399, 185);
             this.PanelTrajet.TabIndex = 7;
             // 
-            // PanelSites
+            // TrajetTV
             // 
-            this.PanelSites.Controls.Add(this.SitesLB);
-            this.PanelSites.Location = new System.Drawing.Point(2, 304);
-            this.PanelSites.Name = "PanelSites";
-            this.PanelSites.Size = new System.Drawing.Size(399, 262);
-            this.PanelSites.TabIndex = 8;
-            // 
-            // AddMenu
-            // 
-            this.AddMenu.Name = "AddMenu";
-            this.AddMenu.Size = new System.Drawing.Size(181, 26);
-            this.AddMenu.Text = "New Trip";
-            this.AddMenu.Click += new System.EventHandler(this.AddMenu_Click);
-            // 
-            // LoadMenu
-            // 
-            this.LoadMenu.Name = "LoadMenu";
-            this.LoadMenu.Size = new System.Drawing.Size(181, 26);
-            this.LoadMenu.Text = "Load Trip...";
-            this.LoadMenu.Click += new System.EventHandler(this.LoadMenu_Click);
-            // 
-            // SaveMenu
-            // 
-            this.SaveMenu.Name = "SaveMenu";
-            this.SaveMenu.Size = new System.Drawing.Size(181, 26);
-            this.SaveMenu.Text = "Save Trip...";
-            this.SaveMenu.Click += new System.EventHandler(this.SaveMenu_Click);
-            // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.settingsToolStripMenuItem.Text = "Settings";
+            this.TrajetTV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TrajetTV.Location = new System.Drawing.Point(0, 0);
+            this.TrajetTV.Name = "TrajetTV";
+            this.TrajetTV.Size = new System.Drawing.Size(399, 185);
+            this.TrajetTV.TabIndex = 3;
             // 
             // TripManager
             // 
@@ -247,8 +247,8 @@
             this.SplitContaierGD.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SplitContaierGD)).EndInit();
             this.SplitContaierGD.ResumeLayout(false);
-            this.PanelTrajet.ResumeLayout(false);
             this.PanelSites.ResumeLayout(false);
+            this.PanelTrajet.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

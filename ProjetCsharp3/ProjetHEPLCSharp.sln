@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inpres-Map", "Inpres-Map\In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TripManager", "TripManager\TripManager.csproj", "{1E972BD7-0C18-47AE-9D64-08D6DF689473}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTripManagerClasses", "MyTripManagerClasses\MyTripManagerClasses.csproj", "{12B8C4DD-F661-40A9-83B4-B8A975644FCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{1E972BD7-0C18-47AE-9D64-08D6DF689473}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E972BD7-0C18-47AE-9D64-08D6DF689473}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E972BD7-0C18-47AE-9D64-08D6DF689473}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12B8C4DD-F661-40A9-83B4-B8A975644FCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12B8C4DD-F661-40A9-83B4-B8A975644FCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12B8C4DD-F661-40A9-83B4-B8A975644FCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12B8C4DD-F661-40A9-83B4-B8A975644FCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
