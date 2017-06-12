@@ -13,14 +13,16 @@ namespace MyTripManagerClasses
         private DateTime _dateDeb;
         private DateTime _dateFin;
         private string _description;
+        private List<Sites> _sitesList;
+        private List<Trajets> _trajetsList;
         #endregion
         #region CONSTRUCTEURS
         public Trip()
         {
-            Tag = "";
+            Tag = "Nouveau voyage";
             DateDeb =  DateTime.Today;
             DateFin = DateTime.Today;
-            Description = "";
+            Description = "Nouveau";
         }
 
     
@@ -55,6 +57,18 @@ namespace MyTripManagerClasses
         {
             set { _description = value; }
             get { return _description; }
+        }
+
+        public List<Sites> SitesList
+        {
+            get { return _sitesList; }
+            set { _sitesList = value; }
+        }
+
+        public List<Trajets> TrajetsList
+        {
+            get { return _trajetsList; }
+            set { _trajetsList = value; }
         }
         #endregion
         #region METHODES

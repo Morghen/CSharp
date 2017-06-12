@@ -29,6 +29,16 @@ namespace TripManager
         {
             if(NewTripModified != null)
             {
+                if(TagTB.Text.Equals("") | DescriptionTB.Text.Equals(""))
+                {
+                    MessageBox.Show("Erreur : certains champs sont incomplets");
+                    return;
+                }
+                if(StartingDatePicker.Value > EndingTimePicker.Value)
+                {
+                    MessageBox.Show("Erreur : conflit entre la date de début et la date de fin");
+                    return;
+                }
                 NewTripModified(this, new ParamEventArgs(TagTB.Text,StartingDatePicker.Value,EndingTimePicker.Value,DescriptionTB.Text));
                 this.Close();
             }

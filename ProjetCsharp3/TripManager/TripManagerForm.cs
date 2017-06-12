@@ -15,36 +15,55 @@ namespace TripManager
 {
     public partial class TripManager : Form
     {
-        public Trip unVoyage = new Trip();
-        public string currentDir;
-        public string TripDir;
+        public Trip _unVoyage = new Trip();
+        public string _currentDir;
+        public string _TripDir;
+        public BindingList<Sites> _sitesList;
         
 
 
         private void WhenNewTripIsCreated(object sender, ParamEventArgs e)
         {
-            unVoyage.Tag = e.Tag;
-            unVoyage.DateDeb = e.DateDeb;
-            unVoyage.DateFin = e.DateFin;
-            unVoyage.Description = e.Description; 
+            _unVoyage.Tag = e.Tag;
+            _unVoyage.DateDeb = e.DateDeb;
+            _unVoyage.DateFin = e.DateFin;
+            _unVoyage.Description = e.Description; 
         }
         public TripManager()
         {
+            InitializeComponent();
             try
             {
-                currentDir = Directory.GetCurrentDirectory();
-                TripDir = currentDir + @"\Trips";
-                if (!Directory.Exists(TripDir))
+                _currentDir = Directory.GetCurrentDirectory();
+                _TripDir = _currentDir + @"\Trips";
+                if (!Directory.Exists(_TripDir))
                 {
-                    Directory.CreateDirectory(TripDir);
+                    Directory.CreateDirectory(_TripDir);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Erreur d'initialisation : " + ex.Message);
                 Environment.Exit(0);
             }
-            InitializeComponent();
+            _sitesList = new BindingList<Sites>();
+            SitesLB.DataSource = _sitesList;
+            TrajetTV.Nodes.Clear();
+            try
+            {
+                foreach (Trajets unTrajet in _unVoyage.TrajetsList)
+                {
+                    TreeNode currentNode = TrajetTV.Nodes.Add(unTrajet.ToString());
+                    foreach (Sites unSite in unTrajet.Childs)
+                    {
+                        currentNode.Nodes.Add(unSite.ToString());
+                    }
+                }
+            }       
+            catch(Exception ex)
+            {
+                MessageBox.Show("Avertissement : aucun voyage chargé, voyage par défaut choisi");
+            }
         }
 
         private void GMapArea_Load(object sender, EventArgs e)
@@ -69,19 +88,19 @@ namespace TripManager
 
         private void AddMenu_Click(object sender, EventArgs e)
         {
-            AddForm AddWindow = new AddForm(new ParamEventArgs(unVoyage.Tag,unVoyage.DateDeb,unVoyage.DateFin,unVoyage.Description));
+            AddForm AddWindow = new AddForm(new ParamEventArgs(_unVoyage.Tag,_unVoyage.DateDeb,_unVoyage.DateFin,_unVoyage.Description));
             AddWindow.NewTripModified += WhenNewTripIsCreated;
             AddWindow.Show(this);
         }
 
         private void LoadMenu_Click(object sender, EventArgs e)
         {
-            XMLToData load = new XMLToData(TripDir);
-            unVoyage = load.newTrip();
+            XMLToData load = new XMLToData(_TripDir);
+            _unVoyage = load.newTrip();
         }
         private void SaveMenu_Click(object sender, EventArgs e)
         {
-            DataToXML save = new DataToXML(unVoyage,TripDir); 
+            DataToXML save = new DataToXML(_unVoyage,_TripDir); 
         }
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
