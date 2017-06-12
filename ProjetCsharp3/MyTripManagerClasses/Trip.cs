@@ -23,6 +23,7 @@ namespace MyTripManagerClasses
             Description = "";
         }
 
+    
         public Trip(string tag,DateTime dateDeb,DateTime dateFin,string description)
         {
             Tag = tag;
