@@ -8,12 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MyTripManagerClasses;
+using System.IO;
+using System.Xml;
 
 namespace TripManager
 {
     public partial class TripManager : Form
     {
         public Trip unVoyage = new Trip();
+        public string currentDir;
+        public string TripDir;
+        
+
 
         private void WhenNewTripIsCreated(object sender, ParamEventArgs e)
         {
@@ -24,6 +30,20 @@ namespace TripManager
         }
         public TripManager()
         {
+            try
+            {
+                currentDir = Directory.GetCurrentDirectory();
+                TripDir = currentDir + @"\Trips";
+                if (!Directory.Exists(TripDir))
+                {
+                    Directory.CreateDirectory(TripDir);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Erreur d'initialisation : " + ex.Message);
+                Environment.Exit(0);
+            }
             InitializeComponent();
         }
 
@@ -56,18 +76,13 @@ namespace TripManager
 
         private void LoadMenu_Click(object sender, EventArgs e)
         {
-            string Msg = "Fonction pas encore implémentée\n";
-            MessageBoxButtons buttons = MessageBoxButtons.OK;
-            MessageBox.Show(Msg, "New Trip", buttons);
+            XMLToData load = new XMLToData(TripDir);
+            unVoyage = load.newTrip();
         }
-
         private void SaveMenu_Click(object sender, EventArgs e)
         {
-            string Msg = "Fonction pas encore implémentée\n";
-            MessageBoxButtons buttons = MessageBoxButtons.OK;
-            MessageBox.Show(Msg, "New Trip", buttons);
+            DataToXML save = new DataToXML(unVoyage,TripDir); 
         }
-
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 

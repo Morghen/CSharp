@@ -22,7 +22,7 @@ namespace TripManager
         {
             TagTB.Text = e.Tag;
             StartingDatePicker.Value = e.DateDeb;
-            EndingTimePicker.Value = e.DateDeb;
+            EndingTimePicker.Value = e.DateFin;
             DescriptionTB.Text = e.Description;
         }
         private void OKButton_Click(object sender, EventArgs e)

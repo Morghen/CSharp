@@ -64,6 +64,7 @@
             this.GMapArea.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.GMapArea.LevelsKeepInMemmory = 5;
             this.GMapArea.Location = new System.Drawing.Point(0, 0);
+            this.GMapArea.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.GMapArea.MarkersEnabled = true;
             this.GMapArea.MaxZoom = 18;
             this.GMapArea.MinZoom = 0;
@@ -76,7 +77,7 @@
             this.GMapArea.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GMapArea.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GMapArea.ShowTileGridLines = false;
-            this.GMapArea.Size = new System.Drawing.Size(866, 569);
+            this.GMapArea.Size = new System.Drawing.Size(564, 475);
             this.GMapArea.TabIndex = 0;
             this.GMapArea.Zoom = 13D;
             this.GMapArea.Load += new System.EventHandler(this.GMapArea_Load);
@@ -84,9 +85,9 @@
             // ToolboxTM
             // 
             this.ToolboxTM.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ToolboxTM.Location = new System.Drawing.Point(0, 28);
+            this.ToolboxTM.Location = new System.Drawing.Point(0, 24);
             this.ToolboxTM.Name = "ToolboxTM";
-            this.ToolboxTM.Size = new System.Drawing.Size(1213, 25);
+            this.ToolboxTM.Size = new System.Drawing.Size(910, 25);
             this.ToolboxTM.TabIndex = 1;
             this.ToolboxTM.Text = "toolStrip1";
             // 
@@ -99,7 +100,8 @@
             this.AboutMI});
             this.MenuTM.Location = new System.Drawing.Point(0, 0);
             this.MenuTM.Name = "MenuTM";
-            this.MenuTM.Size = new System.Drawing.Size(1213, 28);
+            this.MenuTM.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.MenuTM.Size = new System.Drawing.Size(910, 24);
             this.MenuTM.TabIndex = 2;
             // 
             // FileMenu
@@ -109,27 +111,27 @@
             this.LoadMenu,
             this.SaveMenu});
             this.FileMenu.Name = "FileMenu";
-            this.FileMenu.Size = new System.Drawing.Size(44, 24);
+            this.FileMenu.Size = new System.Drawing.Size(37, 20);
             this.FileMenu.Text = "File";
             // 
             // AddMenu
             // 
             this.AddMenu.Name = "AddMenu";
-            this.AddMenu.Size = new System.Drawing.Size(181, 26);
+            this.AddMenu.Size = new System.Drawing.Size(132, 22);
             this.AddMenu.Text = "New Trip...";
             this.AddMenu.Click += new System.EventHandler(this.AddMenu_Click);
             // 
             // LoadMenu
             // 
             this.LoadMenu.Name = "LoadMenu";
-            this.LoadMenu.Size = new System.Drawing.Size(181, 26);
+            this.LoadMenu.Size = new System.Drawing.Size(132, 22);
             this.LoadMenu.Text = "Load Trip...";
             this.LoadMenu.Click += new System.EventHandler(this.LoadMenu_Click);
             // 
             // SaveMenu
             // 
             this.SaveMenu.Name = "SaveMenu";
-            this.SaveMenu.Size = new System.Drawing.Size(181, 26);
+            this.SaveMenu.Size = new System.Drawing.Size(132, 22);
             this.SaveMenu.Text = "Save Trip...";
             this.SaveMenu.Click += new System.EventHandler(this.SaveMenu_Click);
             // 
@@ -138,37 +140,39 @@
             this.ManagementMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem});
             this.ManagementMenu.Name = "ManagementMenu";
-            this.ManagementMenu.Size = new System.Drawing.Size(109, 24);
+            this.ManagementMenu.Size = new System.Drawing.Size(90, 20);
             this.ManagementMenu.Text = "Management";
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // AboutMI
             // 
             this.AboutMI.Name = "AboutMI";
-            this.AboutMI.Size = new System.Drawing.Size(62, 24);
+            this.AboutMI.Size = new System.Drawing.Size(52, 20);
             this.AboutMI.Text = "About";
             this.AboutMI.Click += new System.EventHandler(this.AboutMenu_Click);
             // 
             // TrajetLabel
             // 
             this.TrajetLabel.AutoSize = true;
-            this.TrajetLabel.Location = new System.Drawing.Point(3, 15);
+            this.TrajetLabel.Location = new System.Drawing.Point(2, 12);
+            this.TrajetLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TrajetLabel.Name = "TrajetLabel";
-            this.TrajetLabel.Size = new System.Drawing.Size(45, 17);
+            this.TrajetLabel.Size = new System.Drawing.Size(34, 13);
             this.TrajetLabel.TabIndex = 4;
             this.TrajetLabel.Text = "Trajet";
             // 
             // SitesLabel
             // 
             this.SitesLabel.AutoSize = true;
-            this.SitesLabel.Location = new System.Drawing.Point(3, 284);
+            this.SitesLabel.Location = new System.Drawing.Point(2, 231);
+            this.SitesLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SitesLabel.Name = "SitesLabel";
-            this.SitesLabel.Size = new System.Drawing.Size(39, 17);
+            this.SitesLabel.Size = new System.Drawing.Size(30, 13);
             this.SitesLabel.TabIndex = 6;
             this.SitesLabel.Text = "Sites";
             this.SitesLabel.Click += new System.EventHandler(this.SitesLabel_Click);
@@ -177,7 +181,8 @@
             // 
             this.SplitContaierGD.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SplitContaierGD.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.SplitContaierGD.Location = new System.Drawing.Point(0, 53);
+            this.SplitContaierGD.Location = new System.Drawing.Point(0, 49);
+            this.SplitContaierGD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SplitContaierGD.Name = "SplitContaierGD";
             // 
             // SplitContaierGD.Panel1
@@ -191,54 +196,61 @@
             // SplitContaierGD.Panel2
             // 
             this.SplitContaierGD.Panel2.Controls.Add(this.GMapArea);
-            this.SplitContaierGD.Size = new System.Drawing.Size(1213, 569);
+            this.SplitContaierGD.Size = new System.Drawing.Size(910, 475);
             this.SplitContaierGD.SplitterDistance = 343;
+            this.SplitContaierGD.SplitterWidth = 3;
             this.SplitContaierGD.TabIndex = 7;
             // 
             // PanelSites
             // 
             this.PanelSites.Controls.Add(this.SitesLB);
-            this.PanelSites.Location = new System.Drawing.Point(2, 304);
+            this.PanelSites.Location = new System.Drawing.Point(2, 247);
+            this.PanelSites.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PanelSites.Name = "PanelSites";
-            this.PanelSites.Size = new System.Drawing.Size(399, 262);
+            this.PanelSites.Size = new System.Drawing.Size(299, 213);
             this.PanelSites.TabIndex = 8;
             // 
             // SitesLB
             // 
             this.SitesLB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SitesLB.FormattingEnabled = true;
-            this.SitesLB.ItemHeight = 16;
             this.SitesLB.Location = new System.Drawing.Point(0, 0);
+            this.SitesLB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SitesLB.Name = "SitesLB";
-            this.SitesLB.Size = new System.Drawing.Size(399, 262);
+            this.SitesLB.Size = new System.Drawing.Size(299, 213);
             this.SitesLB.TabIndex = 5;
             // 
             // PanelTrajet
             // 
             this.PanelTrajet.Controls.Add(this.TrajetTV);
-            this.PanelTrajet.Location = new System.Drawing.Point(3, 35);
+            this.PanelTrajet.Location = new System.Drawing.Point(2, 28);
+            this.PanelTrajet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PanelTrajet.Name = "PanelTrajet";
-            this.PanelTrajet.Size = new System.Drawing.Size(399, 185);
+            this.PanelTrajet.Size = new System.Drawing.Size(299, 150);
             this.PanelTrajet.TabIndex = 7;
             // 
             // TrajetTV
             // 
             this.TrajetTV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TrajetTV.Location = new System.Drawing.Point(0, 0);
+            this.TrajetTV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TrajetTV.Name = "TrajetTV";
-            this.TrajetTV.Size = new System.Drawing.Size(399, 185);
+            this.TrajetTV.Size = new System.Drawing.Size(299, 150);
             this.TrajetTV.TabIndex = 3;
             // 
             // TripManager
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1213, 622);
+            this.ClientSize = new System.Drawing.Size(910, 524);
             this.Controls.Add(this.SplitContaierGD);
             this.Controls.Add(this.ToolboxTM);
             this.Controls.Add(this.MenuTM);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.MenuTM;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "TripManager";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trip Manager";
             this.MenuTM.ResumeLayout(false);
             this.MenuTM.PerformLayout();
