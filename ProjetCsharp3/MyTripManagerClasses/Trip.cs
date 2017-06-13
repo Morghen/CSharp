@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace MyTripManagerClasses
 {
+    [Serializable]
     public class Trip
     {
         #region VARIABLES MEMBRES
@@ -13,7 +15,6 @@ namespace MyTripManagerClasses
         private DateTime _dateDeb;
         private DateTime _dateFin;
         private string _description;
-        private List<Sites> _sitesList;
         private List<Trajets> _trajetsList;
         #endregion
         #region CONSTRUCTEURS
@@ -23,15 +24,15 @@ namespace MyTripManagerClasses
             DateDeb =  DateTime.Today;
             DateFin = DateTime.Today;
             Description = "Nouveau";
+            TrajetsList = new List<Trajets>();
         }
-
-    
         public Trip(string tag,DateTime dateDeb,DateTime dateFin,string description)
         {
             Tag = tag;
             DateDeb = dateDeb;
             DateFin = dateFin;
             Description = description;
+            TrajetsList = new List<Trajets>();
         }
         #endregion
         #region PROPRIETES
@@ -58,18 +59,11 @@ namespace MyTripManagerClasses
             set { _description = value; }
             get { return _description; }
         }
-
-        public List<Sites> SitesList
-        {
-            get { return _sitesList; }
-            set { _sitesList = value; }
-        }
-
         public List<Trajets> TrajetsList
         {
             get { return _trajetsList; }
             set { _trajetsList = value; }
-        }
+        } 
         #endregion
         #region METHODES
 

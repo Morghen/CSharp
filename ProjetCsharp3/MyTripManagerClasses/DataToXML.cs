@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,12 @@ namespace MyTripManagerClasses
 {
     public class DataToXML
     {
+        public XmlSerializer xmlFormat;
         #region CONSTRUCTEURS
         public DataToXML(Trip unVoyage,string TripDir)
         {
-            XmlSerializer xmlFormat = new XmlSerializer(typeof(Trip));
+
+            xmlFormat = new XmlSerializer(typeof(Trip));
             SaveFileDialog saveFile = new SaveFileDialog();
             saveFile.InitialDirectory = TripDir;
             saveFile.Filter = "XML file (*.xml)|*.xml";
@@ -33,6 +36,23 @@ namespace MyTripManagerClasses
                 {
                     MessageBox.Show("Error: Could not write file on disk. Original error: " + ex.Message);
                 }
+            }
+        }
+
+        public DataToXML(BindingList<Sites> listeSites,string SitesDir)
+        {
+            xmlFormat = new XmlSerializer(typeof(BindingList<Sites>));
+            try
+            {
+                string save = SitesDir + @"\ListesSites.xml";
+                using (Stream fStream = new FileStream(save, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    xmlFormat.Serialize(fStream, listeSites);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Erreur : " + ex.Message);
             }
         }
         #endregion

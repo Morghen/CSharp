@@ -64,7 +64,7 @@
             this.GMapArea.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.GMapArea.LevelsKeepInMemmory = 5;
             this.GMapArea.Location = new System.Drawing.Point(0, 0);
-            this.GMapArea.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GMapArea.Margin = new System.Windows.Forms.Padding(2);
             this.GMapArea.MarkersEnabled = true;
             this.GMapArea.MaxZoom = 18;
             this.GMapArea.MinZoom = 0;
@@ -81,6 +81,7 @@
             this.GMapArea.TabIndex = 0;
             this.GMapArea.Zoom = 13D;
             this.GMapArea.Load += new System.EventHandler(this.GMapArea_Load);
+            this.GMapArea.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GMapArea_MouseDown);
             // 
             // ToolboxTM
             // 
@@ -182,7 +183,7 @@
             this.SplitContaierGD.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SplitContaierGD.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.SplitContaierGD.Location = new System.Drawing.Point(0, 49);
-            this.SplitContaierGD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SplitContaierGD.Margin = new System.Windows.Forms.Padding(2);
             this.SplitContaierGD.Name = "SplitContaierGD";
             // 
             // SplitContaierGD.Panel1
@@ -205,7 +206,7 @@
             // 
             this.PanelSites.Controls.Add(this.SitesLB);
             this.PanelSites.Location = new System.Drawing.Point(2, 247);
-            this.PanelSites.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PanelSites.Margin = new System.Windows.Forms.Padding(2);
             this.PanelSites.Name = "PanelSites";
             this.PanelSites.Size = new System.Drawing.Size(299, 213);
             this.PanelSites.TabIndex = 8;
@@ -215,7 +216,7 @@
             this.SitesLB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SitesLB.FormattingEnabled = true;
             this.SitesLB.Location = new System.Drawing.Point(0, 0);
-            this.SitesLB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SitesLB.Margin = new System.Windows.Forms.Padding(2);
             this.SitesLB.Name = "SitesLB";
             this.SitesLB.Size = new System.Drawing.Size(299, 213);
             this.SitesLB.TabIndex = 5;
@@ -224,7 +225,7 @@
             // 
             this.PanelTrajet.Controls.Add(this.TrajetTV);
             this.PanelTrajet.Location = new System.Drawing.Point(2, 28);
-            this.PanelTrajet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PanelTrajet.Margin = new System.Windows.Forms.Padding(2);
             this.PanelTrajet.Name = "PanelTrajet";
             this.PanelTrajet.Size = new System.Drawing.Size(299, 150);
             this.PanelTrajet.TabIndex = 7;
@@ -233,7 +234,7 @@
             // 
             this.TrajetTV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TrajetTV.Location = new System.Drawing.Point(0, 0);
-            this.TrajetTV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TrajetTV.Margin = new System.Windows.Forms.Padding(2);
             this.TrajetTV.Name = "TrajetTV";
             this.TrajetTV.Size = new System.Drawing.Size(299, 150);
             this.TrajetTV.TabIndex = 3;
@@ -248,10 +249,11 @@
             this.Controls.Add(this.MenuTM);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.MenuTM;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TripManager";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trip Manager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TripManager_FormClosing);
             this.MenuTM.ResumeLayout(false);
             this.MenuTM.PerformLayout();
             this.SplitContaierGD.Panel1.ResumeLayout(false);

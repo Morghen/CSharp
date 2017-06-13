@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyTripManagerClasses
 {
+    [Serializable]
     public class Trajets
     {
         #region VARIABLES MEMBRES
@@ -18,7 +19,6 @@ namespace MyTripManagerClasses
         #region CONSTRUCTEURS
         public Trajets()
         {
-
         }
         #endregion
         #region PROPRIETES

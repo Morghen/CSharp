@@ -18,6 +18,10 @@ namespace MyCartographyObjects
         private double _long;
         #endregion
         #region CONSTRUCTEURS
+        public POI()
+        {
+
+        }
         public POI(double lat,double longi,string description,Color color,int largeur)
         {
             NextId();
@@ -48,6 +52,12 @@ namespace MyCartographyObjects
                 Colour = color;
             else
                 Colour = Color.Red;
+        }
+        public POI(double lat,double longi)
+        {
+            NextId();
+            Lat = lat;
+            Long = longi;
         }
         #endregion
         #region PROPRIETES
