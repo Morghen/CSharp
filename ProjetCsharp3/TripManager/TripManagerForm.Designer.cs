@@ -256,6 +256,7 @@
             this.TrajetTV.Name = "TrajetTV";
             this.TrajetTV.Size = new System.Drawing.Size(299, 150);
             this.TrajetTV.TabIndex = 3;
+            this.TrajetTV.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TrajetTV_NodeMouseClick);
             // 
             // TripManager
             // 
@@ -307,7 +308,7 @@
         private System.Windows.Forms.ToolStripMenuItem SaveMenu;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton EndTrajetButton;
-        private System.Windows.Forms.TreeView TrajetTV;
+        public System.Windows.Forms.TreeView TrajetTV;
     }
 }
 
