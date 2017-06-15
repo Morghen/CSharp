@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace MyTripManagerClasses
 {
-    [Serializable]
     public class Trajets
     {
         #region VARIABLES MEMBRES
@@ -70,7 +69,7 @@ namespace MyTripManagerClasses
         #region METHODES
         override public string ToString()
         {
-            return Description + " " + Date.Day + @"\" + Date.Month;
+            return Description + " " + Date.Day + @"/" + Date.Month;
         }
         #endregion
     }

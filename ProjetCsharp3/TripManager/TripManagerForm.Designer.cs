@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TripManager));
             this.GMapArea = new GMap.NET.WindowsForms.GMapControl();
             this.ToolboxTM = new System.Windows.Forms.ToolStrip();
+            this.EndTrajetButton = new System.Windows.Forms.ToolStripButton();
             this.MenuTM = new System.Windows.Forms.MenuStrip();
             this.FileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.AddMenu = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +47,6 @@
             this.SitesLB = new System.Windows.Forms.ListBox();
             this.PanelTrajet = new System.Windows.Forms.Panel();
             this.TrajetTV = new System.Windows.Forms.TreeView();
-            this.EndTrajetButton = new System.Windows.Forms.ToolStripButton();
             this.ToolboxTM.SuspendLayout();
             this.MenuTM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContaierGD)).BeginInit();
@@ -96,6 +96,17 @@
             this.ToolboxTM.Size = new System.Drawing.Size(910, 25);
             this.ToolboxTM.TabIndex = 1;
             this.ToolboxTM.Text = "toolStrip1";
+            // 
+            // EndTrajetButton
+            // 
+            this.EndTrajetButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.EndTrajetButton.Enabled = false;
+            this.EndTrajetButton.Image = ((System.Drawing.Image)(resources.GetObject("EndTrajetButton.Image")));
+            this.EndTrajetButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EndTrajetButton.Name = "EndTrajetButton";
+            this.EndTrajetButton.Size = new System.Drawing.Size(57, 22);
+            this.EndTrajetButton.Text = "Fin trajet";
+            this.EndTrajetButton.ToolTipText = "\r\n";
             // 
             // MenuTM
             // 
@@ -182,7 +193,6 @@
             this.SitesLabel.Size = new System.Drawing.Size(30, 13);
             this.SitesLabel.TabIndex = 6;
             this.SitesLabel.Text = "Sites";
-            this.SitesLabel.Click += new System.EventHandler(this.SitesLabel_Click);
             // 
             // SplitContaierGD
             // 
@@ -219,6 +229,7 @@
             // 
             // SitesLB
             // 
+            this.SitesLB.AllowDrop = true;
             this.SitesLB.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SitesLB.FormattingEnabled = true;
             this.SitesLB.Location = new System.Drawing.Point(0, 0);
@@ -238,23 +249,13 @@
             // 
             // TrajetTV
             // 
+            this.TrajetTV.AllowDrop = true;
             this.TrajetTV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TrajetTV.Location = new System.Drawing.Point(0, 0);
             this.TrajetTV.Margin = new System.Windows.Forms.Padding(2);
             this.TrajetTV.Name = "TrajetTV";
             this.TrajetTV.Size = new System.Drawing.Size(299, 150);
             this.TrajetTV.TabIndex = 3;
-            // 
-            // EndTrajetButton
-            // 
-            this.EndTrajetButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.EndTrajetButton.Enabled = false;
-            this.EndTrajetButton.Image = ((System.Drawing.Image)(resources.GetObject("EndTrajetButton.Image")));
-            this.EndTrajetButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.EndTrajetButton.Name = "EndTrajetButton";
-            this.EndTrajetButton.Size = new System.Drawing.Size(57, 22);
-            this.EndTrajetButton.Text = "Fin trajet";
-            this.EndTrajetButton.ToolTipText = "\r\n";
             // 
             // TripManager
             // 
@@ -301,12 +302,12 @@
         private System.Windows.Forms.Panel PanelSites;
         private System.Windows.Forms.ListBox SitesLB;
         private System.Windows.Forms.Panel PanelTrajet;
-        private System.Windows.Forms.TreeView TrajetTV;
         private System.Windows.Forms.ToolStripMenuItem AddMenu;
         private System.Windows.Forms.ToolStripMenuItem LoadMenu;
         private System.Windows.Forms.ToolStripMenuItem SaveMenu;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton EndTrajetButton;
+        private System.Windows.Forms.TreeView TrajetTV;
     }
 }
 

@@ -38,12 +38,19 @@ namespace TripManager
             _unVoyage.Tag = e.Tag;
             _unVoyage.DateDeb = e.DateDeb;
             _unVoyage.DateFin = e.DateFin;
-            _unVoyage.Description = e.Description; 
+            _unVoyage.Description = e.Description;
+            TrajetTV.Nodes.Clear();
         }
 
         public TripManager()
         {
             InitializeComponent();
+            SitesLB.MouseDown += new MouseEventHandler(SitesLB_MouseDown);
+            SitesLB.DragOver += new DragEventHandler(SitesLB_DragOver);
+            TrajetTV.DragEnter += new DragEventHandler(TrajetTV_DragEnter);
+            TrajetTV.DragDrop += new DragEventHandler(TrajetTV_DragDrop);
+
+
             try
             {
                 _currentDir = Directory.GetCurrentDirectory();
@@ -67,6 +74,41 @@ namespace TripManager
             cms.Items.Add("Nouveau trajet");
             cms.ItemClicked += Cms_ItemClicked;
 
+        }
+
+        private void TrajetTV_DragDrop(object sender, DragEventArgs e)
+        {
+            TreeNode nodeToDropIn = TrajetTV.GetNodeAt(TrajetTV.PointToClient(new Point(e.X, e.Y)));
+            if (nodeToDropIn == null) { return; }
+            if (nodeToDropIn.Level > 0)
+            {
+                nodeToDropIn = nodeToDropIn.Parent;
+            }
+            object data = e.Data.GetData(typeof(Sites));
+            nodeToDropIn.Nodes.Add(data.ToString());
+            for(int i = 0;i<_unVoyage.TrajetsList.Count;i++)
+            {
+                if(nodeToDropIn.Text.Equals(_unVoyage.TrajetsList[i].Description))
+                {
+                    _unVoyage.TrajetsList[i].Childs.Add((Sites)data);
+                    break;
+                }
+            }
+            TrajetTV.ExpandAll();
+        }
+        private void TrajetTV_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+        }
+
+        private void SitesLB_DragOver(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+        }
+
+        private void SitesLB_MouseDown(object sender, MouseEventArgs e)
+        {
+            SitesLB.DoDragDrop(SitesLB.SelectedItem, DragDropEffects.Move);
         }
 
         private void LoadSites(GMapOverlay markerOverlay)
@@ -113,11 +155,6 @@ namespace TripManager
             MessageBox.Show(Msg, "About Trip Manager", buttons);
         }
 
-        private void SitesLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void AddMenu_Click(object sender, EventArgs e)
         {
             AddForm AddWindow = new AddForm(new ParamEventArgs(_unVoyage.Tag,_unVoyage.DateDeb,_unVoyage.DateFin,_unVoyage.Description));
@@ -128,7 +165,8 @@ namespace TripManager
         private void LoadMenu_Click(object sender, EventArgs e)
         {
             XMLToData load = new XMLToData(tripDir,1);
-            _unVoyage = load.newTrip();       
+            _unVoyage = load.newTrip();
+            TrajetTV.Nodes.Clear(); 
             try
             {
                 foreach (Trajets unTrajet in _unVoyage.TrajetsList)
@@ -146,10 +184,10 @@ namespace TripManager
             }
         }
         private void SaveMenu_Click(object sender, EventArgs e)
- 
         {
             DataToXML save = new DataToXML(_unVoyage,tripDir); 
         }
+
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 

@@ -80,6 +80,7 @@ namespace TripManager
             set { _description = value; }
             get { return _description; }
         }
+
         public ParamEventArgs(string tag, DateTime dateDeb,DateTime dateFin,string description)
         {
             Tag = tag;

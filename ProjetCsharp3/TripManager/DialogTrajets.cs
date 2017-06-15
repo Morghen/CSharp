@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyTripManagerClasses;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,6 +32,7 @@ namespace TripManager
                 TripManager.nouvTrajet.Description = descriptionTB.Text;
                 TripManager.nouvTrajet.Date = datePicker.Value;
                 TripManager.nouvTrajet.Description = TripManager.nouvTrajet.ToString();
+                TripManager.nouvTrajet.Childs = new List<Sites>();
                 DialogResult = DialogResult.OK;
             }
         }
