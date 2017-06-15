@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TripManager));
             this.GMapArea = new GMap.NET.WindowsForms.GMapControl();
             this.ToolboxTM = new System.Windows.Forms.ToolStrip();
             this.MenuTM = new System.Windows.Forms.MenuStrip();
@@ -45,6 +46,8 @@
             this.SitesLB = new System.Windows.Forms.ListBox();
             this.PanelTrajet = new System.Windows.Forms.Panel();
             this.TrajetTV = new System.Windows.Forms.TreeView();
+            this.EndTrajetButton = new System.Windows.Forms.ToolStripButton();
+            this.ToolboxTM.SuspendLayout();
             this.MenuTM.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContaierGD)).BeginInit();
             this.SplitContaierGD.Panel1.SuspendLayout();
@@ -86,6 +89,8 @@
             // ToolboxTM
             // 
             this.ToolboxTM.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.ToolboxTM.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.EndTrajetButton});
             this.ToolboxTM.Location = new System.Drawing.Point(0, 24);
             this.ToolboxTM.Name = "ToolboxTM";
             this.ToolboxTM.Size = new System.Drawing.Size(910, 25);
@@ -149,6 +154,7 @@
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // AboutMI
             // 
@@ -239,6 +245,17 @@
             this.TrajetTV.Size = new System.Drawing.Size(299, 150);
             this.TrajetTV.TabIndex = 3;
             // 
+            // EndTrajetButton
+            // 
+            this.EndTrajetButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.EndTrajetButton.Enabled = false;
+            this.EndTrajetButton.Image = ((System.Drawing.Image)(resources.GetObject("EndTrajetButton.Image")));
+            this.EndTrajetButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.EndTrajetButton.Name = "EndTrajetButton";
+            this.EndTrajetButton.Size = new System.Drawing.Size(57, 22);
+            this.EndTrajetButton.Text = "Fin trajet";
+            this.EndTrajetButton.ToolTipText = "\r\n";
+            // 
             // TripManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,6 +271,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trip Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TripManager_FormClosing);
+            this.ToolboxTM.ResumeLayout(false);
+            this.ToolboxTM.PerformLayout();
             this.MenuTM.ResumeLayout(false);
             this.MenuTM.PerformLayout();
             this.SplitContaierGD.Panel1.ResumeLayout(false);
@@ -287,6 +306,7 @@
         private System.Windows.Forms.ToolStripMenuItem LoadMenu;
         private System.Windows.Forms.ToolStripMenuItem SaveMenu;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton EndTrajetButton;
     }
 }
 

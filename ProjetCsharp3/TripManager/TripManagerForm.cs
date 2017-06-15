@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MyTripManagerClasses;
 using System.IO;
-using System.Xml;
 using MyCartographyObjects;
 using GMap.NET.WindowsForms;
 using GMap.NET;
@@ -19,18 +13,24 @@ namespace TripManager
 {
     public partial class TripManager : Form
     {
-        public Trip _unVoyage = new Trip();
+        static public Trip _unVoyage = new Trip();
+        public TripManagerParam param;
         public string _currentDir;
-        public string _TripDir;
-        public string _SitesDir;
+        static public string tripDir;
+        static public string sitesDir;
+        static public string imageDir;
+        static public int precision;
+        static public Color couleur;
         public BindingList<Sites> _sitesList = new BindingList<Sites>();
         public GMapOverlay markersOverlay = new GMapOverlay("Marqueurs");
+        public Polyline PolyEnCours = new Polyline();
 
-        static public Sites nouvSite = new Sites();
+        static public Sites unSite = new Sites();
         static public Trajets nouvTrajet = new Trajets();
         static public MouseEventArgs coordActu;
 
         public ContextMenuStrip cms = new ContextMenuStrip();
+        public int CreateTrajet = 0;
         
 
         private void WhenNewTripIsCreated(object sender, ParamEventArgs e)
@@ -40,33 +40,26 @@ namespace TripManager
             _unVoyage.DateFin = e.DateFin;
             _unVoyage.Description = e.Description; 
         }
+
         public TripManager()
         {
             InitializeComponent();
             try
             {
                 _currentDir = Directory.GetCurrentDirectory();
-                _TripDir = _currentDir + @"\Trips";     // REGISTRY
-                _SitesDir = _currentDir + @"\Sites";    // REGISTRY
-                if (!Directory.Exists(_TripDir))
-                {
-                    Directory.CreateDirectory(_TripDir);
-                }
-                if(!Directory.Exists(_SitesDir))
-                {
-                    Directory.CreateDirectory(_SitesDir);
-                }
-                if(!File.Exists(_SitesDir + @"\ListesSites.xml"))
-                {
-                    File.Create(_SitesDir + @"\ListesSites.xml");
-                }
+                param = new TripManagerParam();
+                precision = param.Precision;
+                couleur = param.Couleur;
+                tripDir = param.TripPath;
+                sitesDir = param.SitePath;
+                imageDir = param.ImagePath;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur d'initialisation : " + ex.Message);
                 Environment.Exit(0);
             }
-            LoadSites();
+            LoadSites(markersOverlay);
             SitesLB.DataSource = _sitesList;
             TrajetTV.Nodes.Clear();
             cms.Items.Clear();
@@ -76,12 +69,33 @@ namespace TripManager
 
         }
 
-        private void LoadSites()
+        private void LoadSites(GMapOverlay markerOverlay)
         {
-            XMLToData loadSites = new XMLToData(_SitesDir);
+            XMLToData loadSites = new XMLToData(sitesDir);
             _sitesList = loadSites.newSitesList();
-            MessageBox.Show("Sites chargés");
-
+            if(_sitesList != null)
+            {
+                foreach (Sites unSite in _sitesList)
+                {
+                    GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(unSite.UnPOI.Lat, unSite.UnPOI.Long), new Bitmap(unSite.Image));
+                    MarkerTooltipMode mode = MarkerTooltipMode.OnMouseOver;
+                    marker.ToolTip = new GMapToolTip(marker);
+                    marker.ToolTipMode = mode;
+                    Brush TooltipBackColor = new SolidBrush(Color.White);
+                    marker.ToolTip.Fill = TooltipBackColor;
+                    marker.ToolTip.Foreground = new SolidBrush(couleur);
+                    marker.ToolTipText = unSite.Description;
+                    markersOverlay.Markers.Add(marker);
+                    GMapArea.Overlays.Clear();
+                    GMapArea.Overlays.Add(markersOverlay);
+                }
+                MessageBox.Show("Sites chargés");
+            } 
+            else
+            {
+                _sitesList = new BindingList<Sites>();
+                MessageBox.Show("Initialisation terminée");
+            }
         }
 
         private void GMapArea_Load(object sender, EventArgs e)
@@ -113,7 +127,7 @@ namespace TripManager
 
         private void LoadMenu_Click(object sender, EventArgs e)
         {
-            XMLToData load = new XMLToData(_TripDir,1);
+            XMLToData load = new XMLToData(tripDir,1);
             _unVoyage = load.newTrip();       
             try
             {
@@ -134,7 +148,7 @@ namespace TripManager
         private void SaveMenu_Click(object sender, EventArgs e)
  
         {
-            DataToXML save = new DataToXML(_unVoyage,_TripDir); 
+            DataToXML save = new DataToXML(_unVoyage,tripDir); 
         }
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -143,11 +157,17 @@ namespace TripManager
 
         private void GMapArea_MouseDown(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left)
+            if(e.Button == MouseButtons.Left && CreateTrajet != 1)
             {
                 coordActu = e;
                 cms.Show(GMapArea,new Point(e.X,e.Y));
             }
+            if(e.Button == MouseButtons.Left && CreateTrajet == 1)
+            {
+                coordActu = e;
+                PolyEnCours.AddPOI(new POI(GMapArea.FromLocalToLatLng(coordActu.X, coordActu.Y).Lat, GMapArea.FromLocalToLatLng(coordActu.X, coordActu.Y).Lng));
+            }
+            
         }
 
         private void Cms_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -157,26 +177,72 @@ namespace TripManager
                 DialogSites dialogSite = new DialogSites();
                 if(dialogSite.ShowDialog() == DialogResult.OK)
                 {
-                    nouvSite.Image = null;
-                    nouvSite.UnPOI = new POI(GMapArea.FromLocalToLatLng(coordActu.X,coordActu.Y).Lat,GMapArea.FromLocalToLatLng(coordActu.X,coordActu.Y).Lng);
-                    GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(nouvSite.UnPOI.Lat,nouvSite.UnPOI.Long),GMarkerGoogleType.red);
-                    markersOverlay.Markers.Add(marker);
-                    GMapArea.Overlays.Clear();
-                    GMapArea.Overlays.Add(markersOverlay);
-                    _sitesList.Add(nouvSite);
-                    nouvSite = new Sites();
+                    CreateSiteMarker(unSite);
                 }
             }
             else if (e.ClickedItem.Text == "Nouveau trajet")
             {
-                MessageBox.Show("Clic sur trajet");
+                DialogTrajets dialogTrajet = new DialogTrajets();
+                if(dialogTrajet.ShowDialog() == DialogResult.OK)
+                {
+                    CreateTrajet = 1;
+                    EndTrajetButton.Enabled = true;
+                    EndTrajetButton.Click += EndTrajetButton_Click;
+                }
             }
+        }
+
+        private void EndTrajetButton_Click(object sender, EventArgs e)
+        {
+            nouvTrajet.UnePolyline = PolyEnCours;
+            _unVoyage.TrajetsList.Add(nouvTrajet);
+            TrajetTV.Nodes.Add(nouvTrajet.Description);
+            TrajetTV.ExpandAll();
+            nouvTrajet = new Trajets();
+            PolyEnCours = new Polyline();
         }
 
         private void TripManager_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DataToXML finalSave = new DataToXML(_sitesList, _SitesDir);
+            DataToXML finalSave = new DataToXML(_sitesList, sitesDir);
+            param.SaveParam(precision, couleur);
             MessageBox.Show("Sites sauvegardés");
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogSettings settings = new DialogSettings();
+            if(settings.ShowDialog() == DialogResult.OK)
+            {
+                if (markersOverlay.Markers.Count != 0)
+                {
+                    for (int i = 0; i < markersOverlay.Markers.Count; i++)
+                    {
+                        markersOverlay.Markers[i].ToolTip.Foreground = new SolidBrush(couleur);
+                    }
+                }
+                param.SaveParam(precision, couleur);
+                MessageBox.Show("Changement sauvegardés");
+            }
+        }
+
+        private void CreateSiteMarker(Sites site)
+        {
+            site.UnPOI = new POI(GMapArea.FromLocalToLatLng(coordActu.X, coordActu.Y).Lat, GMapArea.FromLocalToLatLng(coordActu.X, coordActu.Y).Lng);
+            GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(site.UnPOI.Lat, site.UnPOI.Long), new Bitmap(site.Image));
+            MarkerTooltipMode mode = MarkerTooltipMode.OnMouseOver;
+            marker.ToolTip = new GMapToolTip(marker);
+            marker.ToolTipMode = mode;
+            Brush TooltipBackColor = new SolidBrush(Color.White);
+            marker.ToolTip.Fill = TooltipBackColor;
+            marker.ToolTip.Foreground = new SolidBrush(couleur);
+            marker.ToolTipText = site.Description;
+            markersOverlay.Markers.Add(marker);
+            GMapArea.Overlays.Clear();
+            GMapArea.Overlays.Add(markersOverlay);
+            _sitesList.Add(site);
+            GMapArea.Invalidate();
+            site = new Sites();
         }
     }
 }

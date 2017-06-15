@@ -12,7 +12,7 @@ namespace MyTripManagerClasses
     {
         #region VARIABLES MEMBRES
         private string _description;
-        private Bitmap _image;
+        private string _image;
         private POI _unPOI;
         #endregion
         #region CONSTRUCTEUR
@@ -27,10 +27,17 @@ namespace MyTripManagerClasses
             set { _description = value; }
         }
 
-        public Bitmap Image
+        public string Image
         {
-            get { return _image; }
-            set { _image = value; }
+            get
+            {
+                return _image;
+            }
+
+            set
+            {
+                _image = value;
+            }
         }
 
         public POI UnPOI

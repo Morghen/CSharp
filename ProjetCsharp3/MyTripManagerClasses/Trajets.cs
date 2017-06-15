@@ -70,7 +70,7 @@ namespace MyTripManagerClasses
         #region METHODES
         override public string ToString()
         {
-            return Description + " " + Date.ToShortTimeString();
+            return Description + " " + Date.Day + @"\" + Date.Month;
         }
         #endregion
     }

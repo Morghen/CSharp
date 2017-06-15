@@ -32,12 +32,14 @@
             this.descriptionTB = new System.Windows.Forms.TextBox();
             this.OKButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.ImageLabel = new System.Windows.Forms.Label();
+            this.LoadButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // descriptionLabel
             // 
             this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(53, 46);
+            this.descriptionLabel.Location = new System.Drawing.Point(51, 22);
             this.descriptionLabel.Name = "descriptionLabel";
             this.descriptionLabel.Size = new System.Drawing.Size(69, 13);
             this.descriptionLabel.TabIndex = 0;
@@ -45,7 +47,7 @@
             // 
             // descriptionTB
             // 
-            this.descriptionTB.Location = new System.Drawing.Point(128, 43);
+            this.descriptionTB.Location = new System.Drawing.Point(126, 19);
             this.descriptionTB.Name = "descriptionTB";
             this.descriptionTB.Size = new System.Drawing.Size(210, 20);
             this.descriptionTB.TabIndex = 1;
@@ -70,11 +72,32 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
+            // ImageLabel
+            // 
+            this.ImageLabel.AutoSize = true;
+            this.ImageLabel.Location = new System.Drawing.Point(51, 49);
+            this.ImageLabel.Name = "ImageLabel";
+            this.ImageLabel.Size = new System.Drawing.Size(45, 13);
+            this.ImageLabel.TabIndex = 4;
+            this.ImageLabel.Text = "Image : ";
+            // 
+            // LoadButton
+            // 
+            this.LoadButton.Location = new System.Drawing.Point(126, 49);
+            this.LoadButton.Name = "LoadButton";
+            this.LoadButton.Size = new System.Drawing.Size(75, 23);
+            this.LoadButton.TabIndex = 5;
+            this.LoadButton.Text = "Charger...";
+            this.LoadButton.UseVisualStyleBackColor = true;
+            this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
+            // 
             // DialogSites
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(389, 130);
+            this.Controls.Add(this.LoadButton);
+            this.Controls.Add(this.ImageLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.OKButton);
             this.Controls.Add(this.descriptionTB);
@@ -92,5 +115,7 @@
         private System.Windows.Forms.TextBox descriptionTB;
         private System.Windows.Forms.Button OKButton;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Label ImageLabel;
+        private System.Windows.Forms.Button LoadButton;
     }
 }

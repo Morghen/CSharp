@@ -47,6 +47,7 @@
     <Compile Include="Trajets.cs" />
     <Compile Include="Trip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TripManagerParam.cs" />
     <Compile Include="XMLToData.cs" />
   </ItemGroup>
   <ItemGroup>

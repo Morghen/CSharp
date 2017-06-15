@@ -13,8 +13,8 @@ namespace MyTripManagerClasses
     public class XMLToData
     {
         #region VARIABLES
-        public Trip nouveauVoyage = null;
-        public BindingList<Sites> nouvelleListesSites = null;
+        public Trip nouveauVoyage;
+        public BindingList<Sites> nouvelleListesSites;
         #endregion
         #region CONSTRUCTEURS
         public XMLToData(string dir, int type)
@@ -36,7 +36,7 @@ namespace MyTripManagerClasses
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: Could not write file on disk. Original error: " + ex.Message);
+                    MessageBox.Show("Error: Could not open file on disk. Original error: " + ex.Message);
                 }
             }
         }
@@ -53,7 +53,7 @@ namespace MyTripManagerClasses
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: Could not write file on disk. Original error: " + ex.Message);
+                MessageBox.Show("Fichier vide, première utilisation détectée");
             }
         }
         #endregion

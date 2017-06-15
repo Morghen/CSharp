@@ -58,11 +58,23 @@
     <Compile Include="AddForm.Designer.cs">
       <DependentUpon>AddForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DialogSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogSettings.Designer.cs">
+      <DependentUpon>DialogSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="DialogSites.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DialogSites.Designer.cs">
       <DependentUpon>DialogSites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DialogTrajets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogTrajets.Designer.cs">
+      <DependentUpon>DialogTrajets.cs</DependentUpon>
     </Compile>
     <Compile Include="TripManagerForm.cs">
       <SubType>Form</SubType>
@@ -75,8 +87,14 @@
     <EmbeddedResource Include="AddForm.resx">
       <DependentUpon>AddForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DialogSettings.resx">
+      <DependentUpon>DialogSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DialogSites.resx">
       <DependentUpon>DialogSites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogTrajets.resx">
+      <DependentUpon>DialogTrajets.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TripManagerForm.resx">
       <DependentUpon>TripManagerForm.cs</DependentUpon>
