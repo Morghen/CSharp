@@ -133,10 +133,10 @@ namespace TripManager
             {
                 foreach (Trajets unTrajet in _unVoyage.TrajetsList)
                 {
-                    TreeNode currentNode = TrajetTV.Nodes.Add(unTrajet.ToString());
+                    TreeNode currentNode = TrajetTV.Nodes.Add(unTrajet.Description);
                     foreach (Sites unSite in unTrajet.Childs)
                     {
-                        currentNode.Nodes.Add(unSite.ToString());
+                        currentNode.Nodes.Add(unSite.Description);
                     }
                 }
             }
@@ -200,6 +200,9 @@ namespace TripManager
             TrajetTV.ExpandAll();
             nouvTrajet = new Trajets();
             PolyEnCours = new Polyline();
+            EndTrajetButton.Click -= EndTrajetButton_Click;
+            CreateTrajet = 0;
+            EndTrajetButton.Enabled = false;
         }
 
         private void TripManager_FormClosing(object sender, FormClosingEventArgs e)
